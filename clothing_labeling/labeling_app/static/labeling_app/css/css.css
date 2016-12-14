@@ -1,0 +1,26 @@
+html, body{
+    min-height: 100%;
+    height:100%;
+}
+.first-row{
+    min-height: 20%;
+    max-height: 80%;
+    position: relative;
+}
+
+.rectangle {
+    border: 4px solid #FF0000;
+    position: absolute;
+}
+
+
+canvas{
+    /*position: relative;*/
+    height: 100%;
+    width: 100%;
+    border: 1px #000000 solid;
+}
+.container-fluid {
+    height: 100%;
+    /*overflow-y: auto; /* don't show content that exceeds my height */
+}
