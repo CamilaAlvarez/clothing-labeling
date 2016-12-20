@@ -14,8 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
+from django.conf.urls.static import static
+from clothing_labeling.settings import *
 
 
 urlpatterns = [
     url(r'^', include('labeling_app.urls')),
 ]
+
+if DEBUG:
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

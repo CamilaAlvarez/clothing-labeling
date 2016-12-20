@@ -5,6 +5,7 @@ html, body{
 .first-row{
     min-height: 20%;
     max-height: 80%;
+    height:80%;
     position: relative;
 }
 
@@ -13,14 +14,14 @@ html, body{
     position: absolute;
 }
 
-
 canvas{
-    /*position: relative;*/
-    height: 100%;
-    width: 100%;
     border: 1px #000000 solid;
 }
 .container-fluid {
     height: 100%;
     /*overflow-y: auto; /* don't show content that exceeds my height */
+}
+
+input[type=radio]{
+    margin: 4px 10px 10px;
 }

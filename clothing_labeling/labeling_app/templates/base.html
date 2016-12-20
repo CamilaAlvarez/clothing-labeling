@@ -9,7 +9,8 @@
 </head>
 <body>
 {% block content %}{% endblock content %}
-{% block extra_scripts %}{% endblock extra_scripts %}
 <link type="text/css" property='stylesheet' href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css'%}" rel="stylesheet">
+<link type="text/css" property='stylesheet' href="{% static 'bootstrap-3.3.7-dist/css/bootstrap-theme.min.css'%}" rel="stylesheet">
+{% block extra_scripts %}{% endblock extra_scripts %}
 </body>
 </html>

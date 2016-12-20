@@ -1,0 +1,27 @@
+{% extends "labeling_app/index.html" %}
+{% load staticfiles %}
+
+{% block image_title %}
+    <h1>Encuentra la <strong>{{ category.description }}</strong> en la imagen</h1>
+{% endblock image_title %}
+
+{% block extra_selector %}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-6 col-xs-10" ng-show="!category.category && !end">
+            <ui-select name="categories" ng-model="selectedType" title="Elija una categoría">
+                {% verbatim %}
+                <ui-select-match placeholder="Seleccione una categoría">{{ $select.selected }}</ui-select-match>
+                {% endverbatim %}
+                <ui-select-choices repeat="key in categories | filter: $select.search">
+                    <div ng-bind-html="sanitize((key | highlight: $select.search))"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="col-md-2" ng-show="category.category"></div>
+    </div>
+{% endblock extra_selector %}
+
+{% block app_scripts %}
+    <script src="{% static 'angular-ui-select/js/select.min.js' %}"></script>
+    <link type="text/css" property='stylesheet' href="{% static 'angular-ui-select/css/select.min.css'%}" rel="stylesheet">
+{% endblock app_scripts %}

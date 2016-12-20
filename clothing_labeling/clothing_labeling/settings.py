@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'labeling_app'
+    'labeling_app',
+    'rest_framework'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -120,3 +121,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = '/Users/calvarez/Downloads/'
+MEDIA_URL = '/media/'

@@ -1,0 +1,13 @@
+{% extends 'labeling_app/index.html' %}
+{% load staticfiles %}
+
+{% block extra_options %}
+    <button class="btn-default" ng-click="cleanScreen()">Borrar</button>
+{% endblock extra_options %}
+
+{% block app_scripts %}
+    <script src="{% static 'labeling_app/js/basic_labeling/app.js' %}"></script>
+    <script src="{% static 'labeling_app/js/basic_labeling/services.js' %}"></script>
+    <script src="{% static 'labeling_app/js/basic_labeling/controllers.js' %}"></script>
+    <script src="{% static 'labeling_app/js/directives.js' %}"></script>
+{% endblock app_scripts %}

@@ -1,0 +1,9 @@
+{% extends "labeling_app/base_labeling.html" %}
+{% load staticfiles %}
+
+{% block image_title %}
+    {% verbatim %}
+    <h1 ng-show="!end && category.category">Encuentra la <strong>{{ category.description }}</strong> en la imagen</h1>
+    {% endverbatim %}
+{% endblock image_title %}
+
