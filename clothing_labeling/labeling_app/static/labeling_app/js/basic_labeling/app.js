@@ -2,7 +2,7 @@
  * Created by calvarez on 12-12-16.
  */
 'use strict';
-var app = angular.module("Labeling", ['ngSanitize']);
+var app = angular.module("Labeling", ['ngSanitize','ui.select']);
 
 app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
@@ -20,7 +20,8 @@ app.constant("ELEMENTS", {
 
 app.constant("API",{
     nextImage: '/api/rest/next-image',
-    addBoundingBox: '/api/rest/write-bounding-box'
+    addBoundingBox: '/api/rest/write-bounding-box',
+    getCategories: '/api/rest/categories',
+    addBoundingBoxWithCategory: '/api/rest/write-category-bounding-box',
+    nextImageCategory: '/api/rest/next-image-invalid-category'
 });
-
-//,'ui.select'

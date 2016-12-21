@@ -1,27 +1,25 @@
-{% extends "labeling_app/index.html" %}
+{% extends "labeling_app/base_labeling.html" %}
 {% load staticfiles %}
 
 {% block image_title %}
-    <h1>Encuentra la <strong>{{ category.description }}</strong> en la imagen</h1>
+    {% verbatim %}
+    <h1 ng-show="!end">Encuentra la <strong>{{ category.description }}</strong> en la imagen</h1>
+    {% endverbatim %}
 {% endblock image_title %}
 
 {% block extra_selector %}
-    <div class="row">
-        <div class="col-md-offset-2 col-md-6 col-xs-10" ng-show="!category.category && !end">
-            <ui-select name="categories" ng-model="selectedType" title="Elija una categoría">
-                {% verbatim %}
-                <ui-select-match placeholder="Seleccione una categoría">{{ $select.selected }}</ui-select-match>
+        <div class="col-xs-offset-2 col-md-offset-2 col-md-4 col-xs-4" >
+            {% verbatim %}
+            <ui-select ng-model="ctrl.selected" title="Elija una categoría">
+                <ui-select-match placeholder="Elige una categoría">{{ $select.selected.description }}</ui-select-match>
                 {% endverbatim %}
-                <ui-select-choices repeat="key in categories | filter: $select.search">
-                    <div ng-bind-html="sanitize((key | highlight: $select.search))"></div>
+                <ui-select-choices repeat="c in categories | filter: $select.search">
+                    <span ng-bind="c.description"></span>
                 </ui-select-choices>
             </ui-select>
         </div>
-        <div class="col-md-2" ng-show="category.category"></div>
-    </div>
 {% endblock extra_selector %}
 
-{% block app_scripts %}
-    <script src="{% static 'angular-ui-select/js/select.min.js' %}"></script>
-    <link type="text/css" property='stylesheet' href="{% static 'angular-ui-select/css/select.min.css'%}" rel="stylesheet">
-{% endblock app_scripts %}
+{% block app_dependant_scripts %}
+    <script src="{% static 'labeling_app/js/category_labeling/controller_extension.js' %}"></script>
+{% endblock app_dependant_scripts %}

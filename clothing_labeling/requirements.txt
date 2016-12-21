@@ -1,1 +1,2 @@
 djangorestframework
+django>=1.9.5

@@ -7,3 +7,10 @@
     {% endverbatim %}
 {% endblock image_title %}
 
+{% block extra_selector %}
+    <div class="col-md-4 col-xs-4" ng-show="!end"></div>
+{% endblock extra_selector %}
+
+{% block app_dependant_scripts %}
+    <script src="{% static 'labeling_app/js/basic_labeling/controller_extension.js' %}"></script>
+{% endblock app_dependant_scripts %}

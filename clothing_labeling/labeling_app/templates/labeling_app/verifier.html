@@ -3,7 +3,7 @@
 
 {% block image_title %}
     {% verbatim %}
-    <h1 ng-show="category.category">¿Hay una {{ category.description }} en el recuadro? </h1>
+    <h1 ng-show="!end">¿Hay una <strong>{{ category.description }}</strong> en el recuadro? </h1>
     {% endverbatim %}
 {% endblock image_title %}
 {% block extra_options %}
@@ -13,7 +13,9 @@
     {% endverbatim %}
 
 {% endblock extra_options %}
-
+{% block extra_selector %}
+    <div class="col-md-4 col-xs-4" ng-show="!end"></div>
+{% endblock extra_selector %}
 {% block app_scripts %}
     <script src="{% static 'labeling_app/js/verifier/app.js' %}"></script>
     <script src="{% static 'labeling_app/js/verifier/controllers.js' %}"></script>

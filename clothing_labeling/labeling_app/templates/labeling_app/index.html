@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
-        <div class="container-fluid" ng-app="{{ app }}" ng-controller="{{ request_controller }}" style="position: relative">
+        <div class="container-fluid" ng-app="{{ app }}" ng-controller="{{ request_controller }} as ctrl" style="position: relative">
             <div class="row" style="text-align: center">
                 <div class="col-xs-12" id="header-container">
                     {% block image_title %}{% endblock image_title %}
@@ -13,14 +13,19 @@
                     <div id="canvas-container" ng-controller="{{ controller }} as {{ controller_short }}" style="text-align: center">
                         <canvas height="" width="" image-container ></canvas>
                     </div>
-                    <div ng-show="!end">
+                </div>
+             <div class="row">
+                 <div ng-show="!end" style="text-align: center" class="col-md-offset-2 col-md-8 col-xs-12">
+                        {% block extra_selector %}{% endblock extra_selector %}
+                     <div class="col-md-4 col-xs-4" style="text-align: center">
                         {% block extra_options %}{% endblock extra_options %}
                         <button class="btn-default" ng-click="nextLabeling()">Siguiente</button>
-                    </div>
-                </div>
+                     </div>
+                 </div>
+             </div>
 
             </div>
-            {% block extra_selector %}{% endblock extra_selector %}
+
         </div>
 
 

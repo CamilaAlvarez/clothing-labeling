@@ -13,3 +13,11 @@ class InvalidBoundingBox(Exception):
 
     def __str__(self):
         return self.value
+
+
+class InvalidCategory(Exception):
+    def __init__(self, description=""):
+        self.value = description
+
+    def __str__(self):
+        return self.value

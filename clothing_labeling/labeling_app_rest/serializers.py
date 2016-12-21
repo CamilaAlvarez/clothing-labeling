@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from labeling_app.models import Image, ImageCategories, Category, BoundingBox
-from labeling_app.exceptions import InvalidImageCategory, InvalidBoundingBox
 
+from labeling_app_rest.exceptions import InvalidImageCategory, InvalidBoundingBox
+from labeling_app_rest.models import Image, ImageCategories, Category, BoundingBox
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -41,6 +41,9 @@ class BoundingBoxRequestSerializer(serializers.ModelSerializer):
             image_category = ImageCategories.objects.get(pk=self.validated_data['bbx_img_cat_id'])
         except ImageCategories.DoesNotExist:
             raise InvalidImageCategory()
+
+        if image_category.ict_added_bb:
+            return
 
         image_category.ict_added_bb = True
         image_category.save()
@@ -86,3 +89,39 @@ class VerifiedBoundingBoxSerializer(serializers.Serializer):
         return bounding_box
     class Meta:
         fields = ('bb_id', 'correct')
+
+
+class BoundingBoxWithCategorySerializer(serializers.Serializer):
+    image_category = serializers.IntegerField()
+    x = serializers.FloatField()
+    y = serializers.FloatField()
+    height = serializers.FloatField()
+    width = serializers.FloatField()
+    category = serializers.IntegerField()
+
+    def create(self, validated_data):
+        try:
+            image_category = ImageCategories.objects.get(pk=validated_data['image_category'])
+        except ImageCategories.DoesNotExist:
+            raise InvalidImageCategory()
+        try:
+            new_category = Category.objects.get(pk=validated_data["category"])
+        except Category.DoesNotExist:
+            raise InvalidImageCategory()
+
+        if image_category.ict_added_bb:
+            return image_category
+
+        image_category.ict_added_bb = True
+        image_category.ict_cat = new_category
+        image_category.save()
+        x = validated_data['x']
+        y = validated_data['y']
+        width = validated_data['width']
+        height = validated_data['height']
+        bb = BoundingBox(bbx_img_cat_id=image_category, bbx_x=x, bbx_y=y, bbx_height=height, bbx_width=width)
+        bb.save()
+        return bb
+
+    class Meta:
+        fields = ('image_category', 'x', 'y', 'width', 'height', 'category')

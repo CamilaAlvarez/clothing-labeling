@@ -18,11 +18,12 @@ app.factory("boundingBoxService", function(){
 });
 
 app.factory("boundingBoxUtils", function () {
-    var Box = function (x, y, width, height) {
+    var Box = function (x, y, width, height, offset) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.offset = offset;
         this.toJson = function () {
             return {
                 x: this.x,
@@ -33,8 +34,8 @@ app.factory("boundingBoxUtils", function () {
         }
     };
 
-    var createBox = function (x, y, width, height) {
-        return new Box(x, y, width, height);
+    var createBox = function (x, y, width, height, offset) {
+        return new Box(x, y, width, height, offset);
     };
 
     var checkBoundaries = function (boundingBox, boundaries) {

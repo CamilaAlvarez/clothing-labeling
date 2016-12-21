@@ -2,16 +2,35 @@
  * Created by calvarez on 12-12-16.
  */
 
-app.controller("CanvasController", ['$scope', '$sce', '$http', 'boundingBoxService', 'ELEMENTS', 'boundingBoxUtils',
-                                    'API', '$compile',function ($scope, $sce, $http, boxService, ELEMENTS, boundingBoxUtils, API, $compile) {
-    var image_category;
-    $scope.currentImage = new Image();
-    $scope.categories = ["1","5","2","3","4"];
-    $scope.element=null;
-    var parseDimension = function (dimension) {
+app.controller("CanvasController", ['$scope', '$sce',  'boundingBoxService', 'ELEMENTS', 'boundingBoxUtils',
+                                    '$window', function ($scope, $sce, boxService, ELEMENTS, boundingBoxUtils, $window) {
+     var image_category;
+     $scope.currentImage = new Image();
+     this.buildBasicJson = function(){
+        var boundingBox = angular.element(document.querySelector(ELEMENTS.boundingBoxId))[0];
+        var canvas = angular.element(document.querySelector("canvas"))[0];
+        if(angular.isUndefined(boundingBox)){
+            $window.alert("Debes dibujar un rectángulo");
+            return;
+        }
+        var canvasBox = boundingBoxUtils.createBox(0, 0, canvas.width, canvas.height, 0);
+        var bb = boundingBoxUtils.createBox($scope.parseDimension(boundingBox.style.left)-canvas.offsetLeft,
+            $scope.parseDimension(boundingBox.style.top),
+            $scope.parseDimension(boundingBox.style.width),
+            $scope.parseDimension(boundingBox.style.height), canvas.offsetLeft);
+        if(!boundingBoxUtils.checkBoundaries(bb, canvasBox)) {
+            $window.alert("Rectángulo inválido");
+            return;
+        }
+        var boundingBoxJson = bb.toJson();
+        boundingBoxJson.image_category = image_category;
+        $scope.cleanScreen();
+        return boundingBoxJson;
+    };    
+    $scope.parseDimension = function (dimension) {
         return parseInt(dimension.trim().slice(0,-2));
     };
-    var changeImage = function(data){
+    this.changeImage = function(data){
         $scope.nextImage = data.image;
         $scope.currentImage.src = $scope.nextImage.image_url;
         if(angular.isDefined(data.end)) {
@@ -24,46 +43,16 @@ app.controller("CanvasController", ['$scope', '$sce', '$http', 'boundingBoxServi
     $scope.currentImage.onload = function () {
         $scope.$broadcast("imageready");
     };
-
-    $scope.sanitize = function (html) {
-        $sce.getTrustedHtml(html);
-    };
     $scope.cleanScreen = function(){
         boxService.setStatus(false);
         var box = angular.element(document.querySelector(ELEMENTS.boundingBoxId))[0];
         box.remove();
     };
-    $scope.nextLabeling = function () {
-        var boundingBox = angular.element(document.querySelector(ELEMENTS.boundingBoxId))[0];
-        var canvas = angular.element(document.querySelector("canvas"))[0];
-        if(angular.isUndefined(boundingBox))
-            return;
-        var canvasContainer = angular.element(document.querySelector(ELEMENTS.canvasContainer))[0];
-        var offset = canvasContainer.offsetLeft;
-        var canvasBox = boundingBoxUtils.createBox(canvas.offsetLeft, 0, canvas.width, canvas.height);
-        var bb = boundingBoxUtils.createBox(parseDimension(boundingBox.style.left)-offset,
-            parseDimension(boundingBox.style.top),
-            parseDimension(boundingBox.style.width),
-            parseDimension(boundingBox.style.height));
-        if(!boundingBoxUtils.checkBoundaries(bb, canvasBox))
-            return;
-        var boundingBoxJson = bb.toJson();
-        boundingBoxJson.image_category = image_category;
-        $scope.cleanScreen();
-        $http.post(API.addBoundingBox, JSON.stringify(boundingBoxJson)).then(function (response) {
-            var data = response.data;
-            changeImage(data);
-        });
-    };
-    $http.post(API.nextImage).then(function(response){
-        var data = response.data;
-        changeImage(data);
-    });
-
 }]);
 
-app.controller("DrawerController", ['$scope', '$compile', 'boundingBoxService', 'ELEMENTS',
-                                    function ($scope, $compile, boxService, ELEMENTS) {
+app.controller("DrawerController", ['$scope', '$compile', 'boundingBoxService', 'ELEMENTS', 'boundingBoxUtils',
+                                    function ($scope, $compile, boxService, ELEMENTS, boundingBoxUtils) {
+
     var canvas = angular.element(document.querySelector("canvas"))[0];
     canvas.setAttribute("ng-mousedown", "drawer.mouseDown($event)");
     canvas.setAttribute("ng-mousemove", "drawer.mouseMove($event)");
@@ -84,8 +73,8 @@ app.controller("DrawerController", ['$scope', '$compile', 'boundingBoxService', 
             mouse.x = ev.pageX - canvasColumn.offsetLeft;
             mouse.y = ev.pageY - titleColumn.clientHeight;
         } else if (ev.clientX) { //IE
-            mouse.x = ev.clientX - canvas.offset().left//document.body.scrollLeft;
-            mouse.y = ev.clientY + document.body.scrollTop;
+            mouse.x = ev.clientX - canvasColumn.offsetLeft;
+            mouse.y = ev.clientY - titleColumn.clientHeight;
         }
     }
     drawer.mouseDown = function($event) {
@@ -93,16 +82,21 @@ app.controller("DrawerController", ['$scope', '$compile', 'boundingBoxService', 
         if($scope.end){
             return;
         }
-
         var canvas = $event.toElement;
-        if (!angular.isUndefined(box)) {
+        if (angular.isDefined(box)) {
+            var shape = box.style;
+            $scope.bb = boundingBoxUtils.createBox($scope.parseDimension(shape.left),
+                $scope.parseDimension(shape.top),
+                $scope.parseDimension(shape.width),
+                $scope.parseDimension(shape.height),
+                canvas.offsetLeft);
             canvas.style.cursor = "default";
             boxService.setStatus(true);
         } else {
             setMousePosition($event);
             mouse.startX = mouse.x;
             mouse.startY = mouse.y;
-            var element = angular.element('<div ng-mousemove="drawer.mouseMove($event)"></div>');
+            var element = angular.element('<div ng-mousemove="drawer.mouseMove($event)" size-aware></div>');
             box = element[0];
             box.id = ELEMENTS.boundingBoxElement;
             box.className = 'rectangle';
@@ -119,11 +113,16 @@ app.controller("DrawerController", ['$scope', '$compile', 'boundingBoxService', 
             return;
         setMousePosition($event);
         var box = angular.element(document.querySelector(ELEMENTS.boundingBoxId))[0];
-        if (!angular.isUndefined(box) && !boxService.getStatus()) {
-            box.style.width = Math.abs(mouse.x - mouse.startX) + 'px';
-            box.style.height = Math.abs(mouse.y - mouse.startY) + 'px';
-            box.style.left = (mouse.x - mouse.startX < 0) ? mouse.x + 'px' : mouse.startX + 'px';
-            box.style.top = (mouse.y - mouse.startY < 0) ? mouse.y + 'px' : mouse.startY + 'px';
+        if (angular.isDefined(box) && !boxService.getStatus()) {
+            var width = Math.abs(mouse.x - mouse.startX);
+            var height = Math.abs(mouse.y - mouse.startY) ;
+            var left = (mouse.x - mouse.startX < 0) ? mouse.x + 'px' : mouse.startX;
+            var top = (mouse.y - mouse.startY < 0) ? mouse.y + 'px' : mouse.startY;
+            box.style.width = width + 'px';
+            box.style.height = height + 'px';
+            box.style.left = left + 'px';
+            box.style.top = top + 'px';
+            $scope.bb = boundingBoxUtils.createBox(left, top, width, height,canvas.offsetLeft);
         }
     }
 }]);

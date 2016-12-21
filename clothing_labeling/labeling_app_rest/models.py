@@ -9,6 +9,7 @@ class Image(models.Model):
 class Category(models.Model):
     cat_id = models.AutoField(primary_key=True)
     cat_description = models.CharField(blank=False, max_length=50)
+    cat_main = models.BooleanField(default=False)
 
 class BoundingBox(models.Model):
     bbx_id = models.AutoField(primary_key=True)

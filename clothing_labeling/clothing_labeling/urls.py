@@ -20,6 +20,7 @@ from clothing_labeling.settings import *
 
 urlpatterns = [
     url(r'^', include('labeling_app.urls')),
+    url(r'^api/rest/', include('labeling_app_rest.urls'))
 ]
 
 if DEBUG:
