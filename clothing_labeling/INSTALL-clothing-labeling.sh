@@ -5,17 +5,17 @@ DESTINATION=${BASE_DESTINATION}/
 STATIC=${DESTINATION}/static
 ENV=${DESTINATION}/clothing-labeling-env
 
-if[ ! -d ${BASE_DESTINATION} ]
+if [ ! -d ${BASE_DESTINATION} ]
 	then
 	mkdir ${BASE_DESTINATION}
 fi
 
-if[ -d ${DESTINATION} ]
+if [ -d ${DESTINATION} ]
 	then
 	rm -r ${DESTINATION}
 fi
 
-if[ -z "$APP_DIR" ]
+if [ -z "$APP_DIR" ]
 	then
 	APP_DIR=.
 fi
