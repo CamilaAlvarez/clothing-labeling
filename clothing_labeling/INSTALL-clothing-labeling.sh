@@ -1,8 +1,8 @@
 #!bin/bash
 APP_DIR=$1
 BASE_DESTINATION=$HOME/webapps
-DESTINATION=${BASE_DESTINATION}/
-STATIC=${DESTINATION}/static
+DESTINATION=${BASE_DESTINATION}/clothing_labeling
+STATIC=${DESTINATION}/static/clothing_labeling/static
 ENV=${DESTINATION}/clothing-labeling-env
 
 if [ ! -d ${BASE_DESTINATION} ]
@@ -26,6 +26,7 @@ virtualenv --python=python2.7 ${ENV} && \
 source "${ENV}/bin/activate" && \
 echo "INSTALLING DEPENDENCIES" && \
 pip install -r requirements.txt && \
+sed '124iSTATIC_ROOT = $STATIC' -i $DESTINATION/clothing_labeling/settings.py && \
 echo "yes" | python manage.py collectstatic && \
 deactivate && \
 echo "SUCCESS"
