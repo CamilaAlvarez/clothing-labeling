@@ -27,7 +27,7 @@ source "${ENV}/bin/activate" && \
 echo "INSTALLING DEPENDENCIES" && \
 pip install -r requirements.txt && \
 sed '124iSTATIC_ROOT = $STATIC' -i $DESTINATION/clothing_labeling/settings.py && \
-echo "yes" | python manage.py collectstatic && \
+echo "yes" | python $DESTINATION/manage.py collectstatic && \
 deactivate && \
 echo "SUCCESS"
 
