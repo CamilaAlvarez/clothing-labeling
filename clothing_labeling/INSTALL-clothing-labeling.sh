@@ -22,11 +22,11 @@ fi
 
 cp -r ${APP_DIR} ${DESTINATION} && \
 echo "CREATING VIRTUALENV" && \
-virtualenv ${ENV} && \
+virtualenv --python=python2.7 ${ENV} && \
 source "${ENV}/bin/activate" && \
 echo "INSTALLING DEPENDENCIES" && \
 pip install -r requirements.txt && \
-echo "yes" | python manage.py collecstatic && \
+echo "yes" | python manage.py collectstatic && \
 deactivate && \
 echo "SUCCESS"
 
