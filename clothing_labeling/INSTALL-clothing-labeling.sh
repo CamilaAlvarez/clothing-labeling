@@ -26,7 +26,7 @@ virtualenv --python=python2.7 ${ENV} && \
 source "${ENV}/bin/activate" && \
 echo "INSTALLING DEPENDENCIES" && \
 pip install -r requirements.txt && \
-sed '124iSTATIC_ROOT = "'$STATIC'"' -i $DESTINATION/clothing_labeling/settings.py && \
+sed '120iSTATIC_ROOT = "'$STATIC'"' -i $DESTINATION/clothing_labeling/settings.py && \
 sed "s/'default': {[^}]*}$/'default': {'ENGINE': 'django.db.backends.mysql','NAME': 'clothingLabeling','USER': 'labelingassistant','PASSWORD': 'PASS-99a050c0-d3ce-44e4-a581-6a7c4b609a08','HOST': 'localhost','PORT': '',}/"  $DESTINATION/clothing_labeling/settings.py > $DESTINATION/clothing_labeling/temporal  && \
 mv $DESTINATION/clothing_labeling/temporal $DESTINATION/clothing_labeling/settings.py && \
 echo "yes" | python $DESTINATION/manage.py collectstatic && \
