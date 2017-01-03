@@ -3,7 +3,8 @@ from labeling_app_rest.serializers import ImageCategoriesSerializer, BoundingBox
 
 
 def no_results_left():
-    final_image = Image.objects.get(pk=1) #mysql doesn't support 0 as autovalue field
+    final_image = Image.objects.get(img_id=1) #mysql doesn't support 0 as autovalue field
+	print Image.objects.all()
     return {"image": {"image": 1, "image_url": final_image.img_location},
             "end": True}
 
