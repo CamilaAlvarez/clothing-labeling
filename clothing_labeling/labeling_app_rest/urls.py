@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'categories$', views.get_categories, name='categories'),
     url(r'write-category-bounding-box$', views.write_bounding_box_with_category, name='write-bb-category'),
     url(r'next-image-invalid-category$', views.get_next_image_invalid_category, name='next-image-category'),
+    url(r'next-invalid-category-bb$', views.get_next_invalid_category_bb, name='next-image-bb-category'),
+    url(r'update-bbox-category$', views.modify_bounding_box_category, name='update-bbox-category')
 ]

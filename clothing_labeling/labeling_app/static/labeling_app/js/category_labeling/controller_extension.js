@@ -16,10 +16,11 @@ app.controller("CategoryLabelingController", ['$scope', '$controller', '$http', 
         if(angular.isUndefined(boundingBoxJson))
             return;
         boundingBoxJson.category = ctrl.selected.category;
+        $scope.dataLoaded = false;
         $http.post(API.addBoundingBoxWithCategory, JSON.stringify(boundingBoxJson)).then(function (response) {
             var data = response.data;
             ctrl.changeImage(data);
-            ctrl.selected = function () { return; }();;
+            ctrl.selected = function () { return; }();
         });
     };
     $http.post(API.getCategories).then(function (response) {

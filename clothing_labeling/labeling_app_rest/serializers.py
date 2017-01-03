@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from labeling_app_rest.exceptions import InvalidImageCategory, InvalidBoundingBox
+from labeling_app_rest.exceptions import InvalidImageCategory, InvalidBoundingBox, InvalidCategory
 from labeling_app_rest.models import Image, ImageCategories, Category, BoundingBox
 
 
@@ -107,7 +107,7 @@ class BoundingBoxWithCategorySerializer(serializers.Serializer):
         try:
             new_category = Category.objects.get(pk=validated_data["category"])
         except Category.DoesNotExist:
-            raise InvalidImageCategory()
+            raise InvalidCategory()
 
         if image_category.ict_added_bb:
             return image_category
@@ -125,3 +125,26 @@ class BoundingBoxWithCategorySerializer(serializers.Serializer):
 
     class Meta:
         fields = ('image_category', 'x', 'y', 'width', 'height', 'category')
+
+class SimpleBoundingBoxSerializer(serializers.Serializer):
+    bb_id = serializers.IntegerField()
+    category = serializers.IntegerField()
+
+    def create(self, validated_data):
+        try:
+            bounding_box = BoundingBox.objects.get(pk=validated_data['bb_id'])
+        except BoundingBox.DoesNotExist:
+            return InvalidBoundingBox()
+        try:
+            category = Category.objects.get(pk=validated_data['category'])
+        except Category.DoesNotExist:
+            return InvalidCategory()
+
+        image_category = bounding_box.bbx_img_cat_id
+        image_category.ict_cat = category
+        image_category.save()
+
+        return bounding_box
+
+    class Meta:
+        fields = ('bb_id', 'category')

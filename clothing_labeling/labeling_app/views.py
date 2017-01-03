@@ -8,7 +8,7 @@ def index(request):
                                                                 "request_controller": "BasicLabelingController"})
 
 def verifier(request):
-    return render(request, 'labeling_app/verifier.html', {'request_controller': 'MainController',
+    return render(request, 'labeling_app/verifier.html', {'request_controller': 'VerifierController',
                                                            'app': 'Verifier',
                                                             'controller': 'BoundingBoxController',
                                                             'controller_short': 'bbx'
@@ -22,3 +22,9 @@ def transformer(request):
                                                                    })
 
 
+def transform_category(request):
+    return render(request, 'labeling_app/category-labeling-with-bb.html', {'controller': 'BoundingBoxController',
+                                                                    'controller_short': 'bbx',
+                                                                    'app': "Verifier",
+                                                                    "request_controller": "UpdateCategoryBBoxController"
+                                                                   })

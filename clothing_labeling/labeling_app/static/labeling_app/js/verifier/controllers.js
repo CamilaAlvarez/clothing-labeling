@@ -11,47 +11,34 @@ var Box = function(x, y, width, height, id, offset){
     this.offset = offset;
 };
 
-app.controller("MainController", ['$scope', '$http', "API", '$window',function ($scope, $http, API, $window) {
-    var nextImage;
+app.controller("MainController", ['$scope',function ($scope) {
+    $scope.dataLoaded = false;
     $scope.currentImage = new Image();
-    var loadResponse = function(data){
+    this.loadResponse = function(data){
         if(angular.isDefined(data.end)){
             $scope.end = true;
-            $scope.bb = function () { return; }();;
+            $scope.bb = function () { return; }();
             $scope.currentImage.src = data.image.image_url;
             return;
         }
         var canvas = angular.element(document.querySelector("canvas"))[0];
         $scope.bb = new Box(data.x, data.y, data.width, data.height, data.bb_id, 0);
-        nextImage = data.image_category.image;
+        this.nextImage = data.image_category.image;
         $scope.category = data.image_category.category;
-        $scope.currentImage.src = nextImage.image_url;
+        $scope.currentImage.src = this.nextImage.image_url;
     };
-    $http.post(API.nextLabel).then(function(response){
-        var data = response.data;
-        loadResponse(data);
-    });
+    
     
     $scope.currentImage.onload = function () {
+        $scope.dataLoaded = true;
+        $scope.$digest();
         $scope.$broadcast("imageready");
     };
 
-    $scope.nextLabeling = function () {
-        if(angular.isUndefined($scope.verify)){
-            $window.alert("Debe elegir una opción");
-            return;
-        }
-        var request = {correct: $scope.verify, bb_id: $scope.bb.id};
-        $http.post(API.verify,JSON.stringify(request)).then(function (response) {
-            $scope.verify = function () { return; }();
-            var data = response.data;
-            loadResponse(data);
-        });
 
-    };
 }]);
 
-app.controller("BoundingBoxController", ['$scope',"CONSTANTS", "$compile", '$window', function ($scope, CONSTANTS, $compile, $window) {
+app.controller("BoundingBoxController", ['$scope',"CONSTANTS", "$compile", function ($scope, CONSTANTS, $compile) {
     function updateRect() {
         var rect = angular.element(document.querySelector(CONSTANTS.rectangleSelector))[0];
         var canvasContainer = angular.element(document.querySelector(CONSTANTS.canvasContainer))[0];

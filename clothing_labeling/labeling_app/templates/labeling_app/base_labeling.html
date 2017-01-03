@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block extra_options %}
-    <button class="btn-default" ng-click="cleanScreen()">Borrar</button>
+    <button class="btn-default" ng-click="cleanScreen()" ng-disabled="!dataLoaded">Borrar</button>
 {% endblock extra_options %}
 
 {% block app_scripts %}
