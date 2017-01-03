@@ -9,7 +9,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-offset-2 col-md-8 col-xs-12 col-sm-height" id="canvas-column" style="text-align: center">
+                <div class="text-center loading-icon" ng-hide="dataLoaded">
+                    <i class="fa fa-5x fa-spinner fa-spin"></i>
+                </div>
+                <div class="col-md-offset-2 col-md-8 col-xs-12 col-sm-height" id="canvas-column" ng-class="{'opaque': !dataLoaded }" style="text-align: center">
                     <div id="canvas-container" ng-controller="{{ controller }} as {{ controller_short }}" style="text-align: center">
                         <canvas height="" width="" image-container ></canvas>
                     </div>
@@ -19,7 +22,7 @@
                         {% block extra_selector %}{% endblock extra_selector %}
                      <div class="col-md-4 col-xs-4" style="text-align: center">
                         {% block extra_options %}{% endblock extra_options %}
-                        <button class="btn-default" ng-click="nextLabeling()">Siguiente</button>
+                        <button class="btn-default" ng-click="nextLabeling()" ng-disabled="!dataLoaded">Siguiente</button>
                      </div>
                  </div>
              </div>

@@ -6,6 +6,7 @@ app.controller("CanvasController", ['$scope', '$sce',  'boundingBoxService', 'EL
                                     '$window', function ($scope, $sce, boxService, ELEMENTS, boundingBoxUtils, $window) {
      var image_category;
      $scope.currentImage = new Image();
+     $scope.dataLoaded = false;
      this.buildBasicJson = function(){
         var boundingBox = angular.element(document.querySelector(ELEMENTS.boundingBoxId))[0];
         var canvas = angular.element(document.querySelector("canvas"))[0];
@@ -41,6 +42,8 @@ app.controller("CanvasController", ['$scope', '$sce',  'boundingBoxService', 'EL
         image_category = data.image_category;
     };
     $scope.currentImage.onload = function () {
+        $scope.dataLoaded = true;
+        $scope.$digest();
         $scope.$broadcast("imageready");
     };
     $scope.cleanScreen = function(){

@@ -1,9 +1,12 @@
-{% extends "labeling_app/base_labeling.html" %}
+{% extends 'labeling_app/verifier.html' %}
 {% load staticfiles %}
+
+{% block extra_options %}
+{% endblock extra_options %}
 
 {% block image_title %}
     {% verbatim %}
-    <h1 ng-show="!end">Encuentra la <strong>{{ category.description }}</strong> en la imagen y elige una categoría equivalente</h1>
+    <h1 ng-show="!end">Hay una <strong>{{ category.description }}</strong> en la imagen, elige una categoría equivalente</h1>
     {% endverbatim %}
 {% endblock image_title %}
 
@@ -20,6 +23,6 @@
         </div>
 {% endblock extra_selector %}
 
-{% block app_dependant_scripts %}
-    <script src="{% static 'labeling_app/js/category_labeling/controller_extension.js' %}"></script>
-{% endblock app_dependant_scripts %}
+{% block extra %}
+    <script src="{% static 'labeling_app/js/category_labeling_with_bbox/controller_extension.js' %}"></script>
+{% endblock extra %}
