@@ -31,6 +31,7 @@ sed "s/'default': {[^}]*}$/'default': {'ENGINE': 'django.db.backends.mysql','NAM
 sed "s/DEBUG = True/DEBUG = False/" $DESTINATION/clothing_labeling/temporal > $DESTINATION/clothing_labeling/settings.py && \
 echo "yes" | python $DESTINATION/manage.py collectstatic && \
 sed 's/\/api/\/clothing-labeling\/api/' -i $STATIC/labeling_app/js/basic_labeling/app.js && \
+sed 's/\/api/\/clothing-labeling\/api/' -i $STATIC/labeling_app/js/verifier/app.js && \
 deactivate && \
 echo "SUCCESS"
 
