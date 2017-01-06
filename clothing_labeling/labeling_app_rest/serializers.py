@@ -148,3 +148,19 @@ class SimpleBoundingBoxSerializer(serializers.Serializer):
 
     class Meta:
         fields = ('bb_id', 'category')
+
+
+class InvalidImageCategoryIdSerializer(serializers.Serializer):
+    image_category = serializers.IntegerField()
+
+    def create(self, validated_data):
+        try:
+            image_category = ImageCategories.objects.get(pk=validated_data['image_category'])
+        except ImageCategories.DoesNotExist:
+            return InvalidImageCategory
+        image_category.ict_valid = False
+        image_category.save()
+        return image_category
+
+    class Meta:
+        fields = ('image_category')

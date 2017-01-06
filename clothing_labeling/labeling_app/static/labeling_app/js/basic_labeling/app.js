@@ -23,5 +23,6 @@ app.constant("API",{
     addBoundingBox: '/api/rest/write-bounding-box',
     getCategories: '/api/rest/categories',
     addBoundingBoxWithCategory: '/api/rest/write-category-bounding-box',
-    nextImageCategory: '/api/rest/next-image-invalid-category'
+    nextImageCategory: '/api/rest/next-image-invalid-category',
+    invalidateImageCategory: '/api/rest/invalidate-image-category'
 });

@@ -9,35 +9,35 @@ def no_results_left():
 
 def obtain_unlabeled_image():
     try:
-        image_categories = ImageCategories.objects.filter(ict_added_bb=False, ict_cat__cat_main__exact=True)
-    except ImageCategories.DoesNotExist:
+        next_image = ImageCategories.objects.filter(ict_added_bb=False, ict_cat__cat_main__exact=True,
+                                                          ict_valid= True)[0]
+    except (ImageCategories.DoesNotExist, IndexError):
         return no_results_left()
-    if len(image_categories) == 0:
+    if next_image is None:
         return no_results_left()
-    next_image = image_categories[0]
     image_serializer = ImageCategoriesSerializer(next_image, many=False)
     return image_serializer.data
 
 
 def obtain_unlabeled_image_invalid_category():
     try:
-        image_categories = ImageCategories.objects.filter(ict_added_bb=False, ict_cat__cat_main__exact=False)
-    except ImageCategories.DoesNotExist:
+        next_image = ImageCategories.objects.filter(ict_added_bb=False, ict_cat__cat_main__exact=False,
+                                                          ict_valid=True)[0]
+    except (ImageCategories.DoesNotExist, IndexError):
         return no_results_left()
-    if len(image_categories) == 0:
+    if next_image is None:
         return no_results_left()
-    next_image = image_categories[0]
     image_serializer = ImageCategoriesSerializer(next_image, many=False)
     return image_serializer.data
 
 def obtain_unreviewed_bb():
     try:
-        bounding_boxes = BoundingBox.objects.filter(bbx_reviewed=False, bbx_img_cat_id__ict_cat__cat_main__exact=True)
-    except BoundingBox.DoesNotExist:
+        next_bounding_box = BoundingBox.objects.filter(bbx_reviewed=False,
+                                                       bbx_img_cat_id__ict_cat__cat_main__exact=True)[0]
+    except (BoundingBox.DoesNotExist, IndexError):
         return no_results_left()
-    if len(bounding_boxes)==0:
+    if next_bounding_box is None:
         return no_results_left()
-    next_bounding_box = bounding_boxes[0]
     bounding_box_serializer = BoundingBoxSerializer(next_bounding_box, many=False)
     return bounding_box_serializer.data
 

@@ -26,4 +26,5 @@ class ImageCategories(models.Model):
     ict_img = models.ForeignKey('Image', on_delete=models.CASCADE, related_name='image')
     ict_cat = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='categories')
     ict_added_bb = models.BooleanField(default=False)
+    ict_valid = models.BooleanField(default=True)
 

@@ -3,8 +3,9 @@
  */
 
 app.controller("CanvasController", ['$scope', '$sce',  'boundingBoxService', 'ELEMENTS', 'boundingBoxUtils',
-                                    '$window', function ($scope, $sce, boxService, ELEMENTS, boundingBoxUtils, $window) {
-     var image_category;
+                                    '$window', '$http', 'API', function ($scope, $sce, boxService, ELEMENTS, boundingBoxUtils,
+                                                                  $window, $http, API) {
+     var ctrl = this;
      $scope.currentImage = new Image();
      $scope.dataLoaded = false;
      this.buildBasicJson = function(){
@@ -27,7 +28,14 @@ app.controller("CanvasController", ['$scope', '$sce',  'boundingBoxService', 'EL
         boundingBoxJson.image_category = image_category;
         $scope.cleanScreen();
         return boundingBoxJson;
-    };    
+    };
+    $scope.invalidate = function(){
+        var json = {'image_category': ctrl.image_category};
+        $http.post(API.invalidateImageCategory, JSON.stringify(json)).then(function(response){
+            var data = response.data;
+            ctrl.changeImage(data);
+        });
+    };
     $scope.parseDimension = function (dimension) {
         return parseInt(dimension.trim().slice(0,-2));
     };
@@ -39,7 +47,7 @@ app.controller("CanvasController", ['$scope', '$sce',  'boundingBoxService', 'EL
             return;
         }
         $scope.category = data.category;
-        image_category = data.image_category;
+        ctrl.image_category = data.image_category;
     };
     $scope.currentImage.onload = function () {
         $scope.dataLoaded = true;

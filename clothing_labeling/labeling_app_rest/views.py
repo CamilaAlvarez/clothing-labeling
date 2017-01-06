@@ -3,9 +3,11 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 
-from labeling_app_rest.utils import obtain_unlabeled_image, obtain_unreviewed_bb, get_all_categories,obtain_unlabeled_image_invalid_category,obtain_bb_invalid_category
+from labeling_app_rest.utils import obtain_unlabeled_image, obtain_unreviewed_bb, get_all_categories,\
+    obtain_unlabeled_image_invalid_category,obtain_bb_invalid_category
 from labeling_app_rest.exceptions import InvalidImageCategory, InvalidCategory, InvalidBoundingBox
-from labeling_app_rest.serializers import BoundingBoxRequestSerializer, VerifiedBoundingBoxSerializer, BoundingBoxWithCategorySerializer, SimpleBoundingBoxSerializer
+from labeling_app_rest.serializers import BoundingBoxRequestSerializer, VerifiedBoundingBoxSerializer,\
+    BoundingBoxWithCategorySerializer, SimpleBoundingBoxSerializer, InvalidImageCategoryIdSerializer
 
 
 #Services
@@ -91,5 +93,18 @@ def modify_bounding_box_category(request):
         except (InvalidCategory, InvalidImageCategory, InvalidBoundingBox) as e:
             return Response({'error': 'Invalid request'}, status=status.HTTP_406_NOT_ACCEPTABLE)
         next_image = obtain_bb_invalid_category()
+        return Response(next_image, status.HTTP_200_OK)
+    return Response(deserialized_data.errors, status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def invalidate_image_category(request):
+    json_data = JSONParser().parse(request)
+    deserialized_data = InvalidImageCategoryIdSerializer(data=json_data)
+    if deserialized_data.is_valid():
+        try:
+            deserialized_data.save()
+        except (InvalidImageCategory) as e:
+            return Response({'error': 'Invalid request'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+        next_image = obtain_unlabeled_image()
         return Response(next_image, status.HTTP_200_OK)
     return Response(deserialized_data.errors, status.HTTP_400_BAD_REQUEST)
