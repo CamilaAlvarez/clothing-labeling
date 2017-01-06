@@ -83,6 +83,11 @@ class VerifiedBoundingBoxSerializer(serializers.Serializer):
         except BoundingBox.DoesNotExist:
             raise InvalidBoundingBox()
 
+        if not validated_data['correct']:
+            image_category = bounding_box.bbx_img_cat_id
+            image_category.ict_added_bb = False
+            image_category.save()
+
         bounding_box.bbx_reviewed = True
         bounding_box.bbx_verified = validated_data['correct']
         bounding_box.save()

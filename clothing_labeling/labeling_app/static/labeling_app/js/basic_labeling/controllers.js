@@ -25,7 +25,7 @@ app.controller("CanvasController", ['$scope', '$sce',  'boundingBoxService', 'EL
             return;
         }
         var boundingBoxJson = bb.toJson();
-        boundingBoxJson.image_category = image_category;
+        boundingBoxJson.image_category = ctrl.image_category;
         $scope.cleanScreen();
         return boundingBoxJson;
     };
