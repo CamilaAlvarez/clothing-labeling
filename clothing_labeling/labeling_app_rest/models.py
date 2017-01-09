@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import time
 
 from django.db import models
 
@@ -27,4 +28,5 @@ class ImageCategories(models.Model):
     ict_cat = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='categories')
     ict_added_bb = models.BooleanField(default=False)
     ict_valid = models.BooleanField(default=True)
+    ict_taken_for_labeling = models.BooleanField(default=False)
 

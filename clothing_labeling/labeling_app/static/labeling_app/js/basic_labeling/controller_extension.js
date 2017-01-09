@@ -8,6 +8,8 @@ app.controller("BasicLabelingController", ['$scope', '$controller', '$http', 'AP
     angular.extend(this, canvasController);
     $scope.nextLabeling = function () {
         var boundingBoxJson = ctrl.buildBasicJson();
+        if(angular.isUndefined(boundingBoxJson))
+            return;
         $scope.dataLoaded = false;
         $http.post(API.addBoundingBox, JSON.stringify(boundingBoxJson)).then(function (response) {
             var data = response.data;

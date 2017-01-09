@@ -1,6 +1,10 @@
 from labeling_app_rest.models import ImageCategories, BoundingBox, Image, Category
 from labeling_app_rest.serializers import ImageCategoriesSerializer, BoundingBoxSerializer, CategorySerializer
 
+import logging
+
+logger = logging.getLogger("clothing_labeling")
+
 
 def no_results_left():
     final_image = Image.objects.get(img_id=1) #mysql doesn't support 0 as autovalue field
@@ -10,12 +14,15 @@ def no_results_left():
 def obtain_unlabeled_image():
     try:
         next_image = ImageCategories.objects.filter(ict_added_bb=False, ict_cat__cat_main__exact=True,
-                                                          ict_valid= True)[0]
+                                                          ict_valid= True, ict_taken_for_labeling=False)[0]
     except (ImageCategories.DoesNotExist, IndexError):
         return no_results_left()
     if next_image is None:
         return no_results_left()
+
     image_serializer = ImageCategoriesSerializer(next_image, many=False)
+    next_image.ict_taken_for_labeling = True
+    next_image.save()
     return image_serializer.data
 
 
@@ -59,3 +66,4 @@ def obtain_bb_invalid_category():
         return bounding_box_serializer.data
     else:
         return no_results_left()
+

@@ -1,5 +1,11 @@
 from django.conf.urls import url
 import labeling_app_rest.views as views
+import logging
+import sys
+
+logger = logging.getLogger("clothing_labeling")
+ch = logging.StreamHandler(sys.stderr)
+logger.addHandler(ch)
 
 urlpatterns = [
     url(r'next-image$', views.get_next_image, name='next-image'),
