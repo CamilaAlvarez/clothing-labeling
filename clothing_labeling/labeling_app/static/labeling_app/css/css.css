@@ -1,7 +1,19 @@
 html, body{
     min-height: 100%;
     height:100%;
+    background-color: rgba(218, 254, 254, 0.44);
 }
+
+md-content{
+    background-color: rgba(218, 254, 254, 0.44);
+}
+
+.dashed {
+    border-bottom: 1px dashed #999;
+    display: inline;
+    cursor: help;
+}
+
 .first-row{
     min-height: 20%;
     max-height: 80%;

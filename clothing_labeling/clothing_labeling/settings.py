@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = [".192.168.1.90"]
 
+#Redirect after login
+LOGIN_REDIRECT_URL = 'index'
+
+LOGIN_URL = 'login'
 
 # Application definition
 
@@ -39,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'labeling_app',
     'labeling_app_rest',
-    'rest_framework'
+    'rest_framework',
+    'djangobower'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -51,6 +56,12 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+STATICFILES_FINDERS = [
+    'djangobower.finders.BowerFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
 ROOT_URLCONF = 'clothing_labeling.urls'
@@ -71,6 +82,8 @@ TEMPLATES = [
     },
 ]
 
+BOWER_COMPONENTS_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'bower_components'))
+
 WSGI_APPLICATION = 'clothing_labeling.wsgi.application'
 
 
@@ -80,6 +93,13 @@ WSGI_APPLICATION = 'clothing_labeling.wsgi.application'
 DATABASES = {
     'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': os.path.join(BASE_DIR, 'db.sqlite3'),}
 }
+
+BOWER_INSTALLED_APPS = (
+    'angular-material',
+    'bootstrap',
+    'ui-cropper',
+    'angular'
+)
 
 
 # Password validation
@@ -121,3 +141,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/Users/calvarez/Downloads/'
 MEDIA_URL = '/media/'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

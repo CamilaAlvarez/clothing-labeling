@@ -1,0 +1,35 @@
+{% extends 'registration/base-registration.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div ng-controller="RegistrationCtrl as reg" ng-app="Labeling" layout="column" layout-align="center center" layout-fill>
+    {% if form.non_field_errors %}
+        <p ng-init='reg.showAlert("Wrong username or password")'></p>
+    {% endif %}
+        <h2>Login</h2>
+        <form name="form" method="post" role="form" action="{% url 'login' %}" novalidate>
+            {% csrf_token %}
+            <!-- Username -->
+            <md-input-container class="md-block" flex-gt-xs >
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" ng-model="reg.user.username"   />
+            </md-input-container>
+
+            <!-- Password -->
+            <md-input-container class="md-block" flex-gt-xs>
+                <label for="password">Password</label>
+                <input type="password"  name="password" id="password" ng-model="reg.user.password"  />
+            </md-input-container>
+
+            <!-- SUBMIT -->
+            <div class="space-top text-center">
+                <md-button class="md-raised waves-effect waves-light btn done" type="submit">Login</md-button>
+                <br>
+                <a href="{% url 'register' %}">Go to registration</a>
+                <br>
+                <a href="{% url 'password-reset' %}">Forgot you password?</a>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

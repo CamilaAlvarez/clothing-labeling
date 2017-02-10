@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div ng-app="Labeling" ng-controller="LabelingCtrl as ctrl" layout-fill layout="column"  ng-init="ctrl.setImage('{{ img.img_location }}')">
+        <md-content layout-fill>
+        {% if not usr.usr_has_seen_info %}
+            <p ng-init="ctrl.showInstruction(false)"></p>
+        {% endif %}
+        {% if not usr.usr_has_seen_info %}
+            <p ng-init="ctrl.showInstruction(false)"></p>
+        {% endif %}
+        <div layout="row" layout-align="end center" style="margin-top: 10px; margin-right: 10px">
+                {% if usr.usr_is_mechanical_turk %}
+                    <md-button class="md-raised" ng-click="ctrl.showCodes()">Show codes</md-button>
+                {% endif %}
+            {% if not usr.usr_blocked %}
+                <md-button class="md-raised" ng-click="ctrl.showInstruction(true)">Instructions</md-button>
+            {% endif %}
+            <md-button class="md-raised" ng-href="{% url 'logout' %}">Logout</md-button>
+        </div>
+        <div flex="5"></div>
+        <div layout-align="center">
+            {% block image_section %}{% endblock image_section %}
+        </div>
+        </md-content>
+    </div>
+
+{% endblock content %}
+{% block extra_scripts %}
+    {% block app_scripts %}
+    {% endblock app_scripts %}
+    <script src="{% static 'labeling_app/js/app/basic_labeling/controllers/LabelingCtrl.js' %}"></script>
+    <script src="{% static 'labeling_app/js/app/basic_labeling/controllers/InstructionsCtrl.js' %}"></script>
+    <link type="text/css" property='stylesheet' href="{% static 'labeling_app/css/css.css'%}" rel="stylesheet">
+{% endblock extra_scripts %}

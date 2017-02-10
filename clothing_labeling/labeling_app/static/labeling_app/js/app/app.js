@@ -2,7 +2,7 @@
  * Created by calvarez on 12-12-16.
  */
 'use strict';
-var app = angular.module("Labeling", ['ngSanitize','ui.select']);
+var app = angular.module("Labeling", ['ngMaterial','ngMessages', 'uiCropper']);
 
 app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';

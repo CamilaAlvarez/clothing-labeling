@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block extra_scripts %}
+    <link type="text/css" property='stylesheet' href="{% static 'labeling_app/css/registration.css' %}" rel="stylesheet">
+    <script src="{% static 'labeling_app/js/app/basic_labeling/controllers/RegistrationCtrl.js' %}"></script>
+    <script src="{% static 'labeling_app/js/app/basic_labeling/directives/compareTo.js' %}"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+{% endblock extra_scripts %}

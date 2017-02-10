@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
-import time
 
 from django.db import models
+from django.contrib.auth.models import User
 
 class Image(models.Model):
     img_id = models.AutoField(primary_key=True)

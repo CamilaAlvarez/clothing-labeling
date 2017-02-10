@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
+        {% if user.is_authenticated %}
+            <h2>AUTENTICADO</h2>
+            <a href={% url 'logout' %}>logout</a>
+        {% endif %}
         <div class="container-fluid" ng-app="{{ app }}" ng-controller="{{ request_controller }} as ctrl" style="position: relative">
             <div class="row" style="text-align: center">
                 <div class="col-xs-12" id="header-container">

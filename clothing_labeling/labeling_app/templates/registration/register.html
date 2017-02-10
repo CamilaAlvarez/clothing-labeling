@@ -1,0 +1,75 @@
+{% extends 'registration/base-registration.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div ng-controller="RegistrationCtrl as reg" ng-app="Labeling" layout="column" layout-align="center center" layout-fill >
+    {% if error %}
+        <p ng-init='reg.showAlert("{{  error|safe   }}")'></p>
+    {% endif %}
+    <h2>Register</h2>
+    <form name="form" method="post" role="form" action="{% url 'verify' %}" novalidate>
+        {% csrf_token %}
+        <!-- Username -->
+        <md-input-container class="md-block" flex-gt-xs >
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" ng-model="reg.user.username"  required />
+            <div ng-messages="form.username.$error" role="alert" >
+              <div ng-message="required" class="my-message">Username is required</div>
+            </div>
+        </md-input-container>
+
+        <!-- Email -->
+        <md-input-container  class="md-block" flex-gt-xs>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" ng-model="reg.user.email" class="validate" required>
+            <div ng-messages="form.email.$error" role="alert" multiple>
+                <div ng-message="email" class="my-message">Invalid Email</div>
+                <div ng-message="required" class="my-message">Email is required</div>
+            </div>
+            <span class="help-block" ng-show="form-register.email.$error.email">Your email is invalid.</span>
+        </md-input-container >
+
+        <!-- Password -->
+        <md-input-container class="md-block" flex-gt-xs>
+            <label for="password">Password</label>
+            <input type="password" ng-minlength='8' name="password" id="password" ng-model="reg.user.password" required />
+            <div ng-messages="form.password.$error" role="alert" multiple>
+              <div ng-message="required" class="my-message">Password is required</div>
+              <div ng-message="minlength" class="my-message">Password is too short</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-xs >
+            <label for="password">Repeat password</label>
+            <input type="password" name="repeatPassword" id="repeatPassword" ng-model="reg.user.repeatPassword"
+                   compare-to="reg.user.password" required />
+            <div ng-messages="form.repeatPassword.$error" role="alert" multiple>
+                <div ng-message="compareTo" class="my-message">Passwords don't match</div>
+            </div>
+        </md-input-container>
+
+        <!-- Others -->
+        <h5>How did you learn about this site?</h5>
+        <input type="hidden" name="info" ng-value="reg.user.info.selected"/>
+        <md-input-container>
+        <md-radio-group name="origin" id="info" ng-change="" ng-model="reg.user.info.selected" ng-required="true" >
+            <md-radio-button name="origin" ng-model="reg.user.info.selected" value="mechanicalTurk" >Amazon Mechanical Turk</md-radio-button>
+            <md-radio-button name="origin" ng-model="reg.user.info.selected" value="other"> Other </md-radio-button>
+        </md-radio-group>
+        </md-input-container>
+        <md-input-container ng-show="reg.user.info.selected == 'other'" class="md-block" flex-gt-xs>
+            <label>Describe briefly</label>
+            <input ng-model="reg.user.infoOther" name="otherDetails" ng-required="reg.user.info.selected == 'other'">
+            <div ng-messages="form.otherDetails.$error" role="alert" >
+              <div ng-message="required" class="my-message">Please add a description</div>
+            </div>
+        </md-input-container>
+
+        <!-- SUBMIT -->
+        <div class="space-top text-center">
+            <md-button ng-disabled="form.$invalid" class="md-raised waves-effect waves-light btn done" type="submit"><i class="material-icons left">done</i> Done</md-button>
+            <md-button type="button" class="md-raised waves-effect waves-light md-warn" ng-href="{% url 'login' %}"><i class="material-icons left">arrow_back</i> Back</md-button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+

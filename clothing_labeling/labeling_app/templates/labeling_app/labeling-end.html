@@ -1,0 +1,23 @@
+{% extends 'labeling_app/base-labeling.html' %}
+
+{% block image_section %}
+        <div layout="row"  layout-align="center">
+        </div>
+        <div layout="row" class="cropArea" layout-align="center center" style="height: 600px; position: relative">
+            <img ng-src="{{ img.img_location }}">
+        </div>
+        <div layout="column"  layout-align=" center center">
+            {% if usr.usr_is_mechanical_turk %}
+                <div>
+                    <h4>Your code is: <b>{{ code }}</b></h4>
+                    <br>
+                </div>
+            {% endif %}
+            <form method="post" action="{% url 'index' %}">
+                {% csrf_token %}
+                <input type="hidden" value="true" name="more">
+                <md-button class="md-raised" type="submit">Obtain more images!!</md-button>
+            </form>
+        </div>
+
+{% endblock image_section %}
