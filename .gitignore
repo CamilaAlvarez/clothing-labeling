@@ -89,6 +89,10 @@ ENV/
 .ropeproject
 .DS_Store
 .DS_Store?
-.idea/*
+.idea/
 clothing_labeling/.idea/*
 */.idea/*
+clothing_labeling/bower_components/
+clothing-labeling-env/
+clothing_labeling/db.sqlite3
+clothing_labeling/new_data2.sql
