@@ -2,11 +2,30 @@
  * Created by calvarez on 12-12-16.
  */
 'use strict';
-var app = angular.module("Labeling", ['ngMaterial','ngMessages', 'uiCropper']);
+var app = angular.module("Labeling", ['ngMaterial','ngMessages', 'uiCropper','pascalprecht.translate']);
 
-app.config(['$httpProvider', function ($httpProvider) {
+/*app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+}]);*/
+
+app.filter("htmlSafe", ['$sce', function($sce) {
+    return function(htmlCode){
+        return $sce.trustAsHtml(htmlCode);
+    };
+}]);
+
+app.config(['$translateProvider', function ($translateProvider) {
+    $translateProvider.registerAvailableLanguageKeys(["en","es"], {
+    "en_*": "en",
+    "es_*": "es"
+    });
+    $translateProvider.useStaticFilesLoader({
+        prefix: '/static/labeling_app/js/app/language/',
+        suffix: '.json'
+    });
+    $translateProvider.determinePreferredLanguage();
+    $translateProvider.fallbackLanguage("en");
 }]);
 
 app.constant("ELEMENTS", {

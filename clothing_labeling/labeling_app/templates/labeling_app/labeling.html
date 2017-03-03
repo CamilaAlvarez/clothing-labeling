@@ -2,7 +2,7 @@
 
 {% block image_section %}
     <div layout="row"  layout-align="center">
-            <h1 ng-mouseover="ctrl.showCatImage()" ng-mouseleave="ctr.hideCatImage()">Find the
+            <h1 ng-mouseover="ctrl.showCatImage()" ng-mouseleave="ctr.hideCatImage()">{% verbatim %}{{ 'FINDTHE' | translate }}{% endverbatim %}
                 <span class="dashed" id="category"
                       ng-click="ctrl.showCategoryPicture('{{ category.cat_descriptive_image }}','{{ category.cat_description }}')">
                     {{ category.cat_description }}</span></h1>
@@ -11,14 +11,16 @@
             <ui-cropper layout-fill  image="ctrl.image"  area-type="rectangle" cropject="ctrl.cropper" result-image="ctrl.myCroppedImage"></ui-cropper>
         </div>
         <div layout="row"  layout-align="center">
-            <md-button class="md-raised md-warn" ng-href="{% url 'invalidate_image' %}">It is wrong!</md-button>
-            <form method="post" action="{% url 'evaluate_image' %}">
+            <md-button class="md-raised md-warn" ng-href="{% url 'invalidate_image' %}">{% verbatim %}{{ 'WRONG' | translate }}{% endverbatim %}</md-button>
+            <form method="post" action="{% url 'evaluate_image' %}" ng-submit="ctrl.setHeight()">
                 {% csrf_token %}
                 <input type="hidden" ng-value="ctrl.cropper.cropLeft" name="x">
                 <input type="hidden" ng-value="ctrl.cropper.cropTop" name="y">
                 <input type="hidden" ng-value="ctrl.cropper.cropWidth" name="width">
                 <input type="hidden" ng-value="ctrl.cropper.cropHeight" name="height">
-                <md-button class="md-raised" type="submit">Next</md-button>
+                <input type="hidden" ng-value="ctrl.imageHeight" name="imageHeight">
+                <input type="hidden" ng-value="ctrl.imageWidth" name="imageWidth">
+                <md-button class="md-raised" type="submit">{% verbatim %}{{ 'NEXT' | translate }}{% endverbatim %}</md-button>
             </form>
         </div>
 {% endblock image_section %}

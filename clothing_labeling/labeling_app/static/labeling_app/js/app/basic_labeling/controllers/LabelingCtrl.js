@@ -27,6 +27,13 @@ function LabelingCtrl($mdDialog, $rootScope) {
             $mdDialog.cancel();
         };
     }
+    self.imageHeight = 0;
+    self.imageWidth = 0;
+    self.setHeight = function () {
+        var canvas = document.getElementsByTagName('canvas');
+        self.imageHeight = canvas[0].height;
+        self.imageWidth = canvas[0].width;
+    };
     self.setImage = function (image) {
         self.image = image;
     };
@@ -74,7 +81,7 @@ function LabelingCtrl($mdDialog, $rootScope) {
                             '</md-toolbar>'+
                         '<md-dialog-content>'+
                             '<div layout="column" layout-align="center center" layout-fill>'+
-                            '<img style="max-width: 80%" src="'+image+'" />'+
+                            '<img style="max-width: 80%; max-height: 500px" src="'+image+'" />'+
                             '</div>'+
                         '</md-dialog-content>'+
                         '</form>'+

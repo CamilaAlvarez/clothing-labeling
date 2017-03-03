@@ -2,9 +2,9 @@
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-            <h2>Current codes</h2>
+            <h2>{% verbatim %}{{ 'CURRENTCODES' | translate }}{% endverbatim %}</h2>
             <span flex></span>
-            <md-button ng-click="ctrl.close()">Close</md-button>
+            <md-button ng-click="ctrl.close()">{% verbatim %}{{ 'CLOSE' | translate }}{% endverbatim %}</md-button>
       </div>
     </md-toolbar>
 

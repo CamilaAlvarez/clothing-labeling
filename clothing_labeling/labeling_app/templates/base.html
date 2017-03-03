@@ -9,7 +9,8 @@
 </head>
 <body>
 {% block content %}{% endblock content %}
-
+<script src="{% static 'angular-translate/angular-translate.js' %}"></script>
+<script src="{% static 'angular-translate-loader-static-files/angular-translate-loader-static-files.min.js' %}"></script>
 <script src="{% static 'labeling_app/js/app/app.js' %}"></script>
 <script src="{% static 'ui-cropper/compile/minified/ui-cropper.js' %}"></script>
 <link type="text/css" property="stylesheet" href="{% static 'ui-cropper/compile/minified/ui-cropper.css' %}" rel="stylesheet">

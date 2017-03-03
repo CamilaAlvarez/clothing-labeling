@@ -12,12 +12,12 @@
         {% endif %}
         <div layout="row" layout-align="end center" style="margin-top: 10px; margin-right: 10px">
                 {% if usr.usr_is_mechanical_turk %}
-                    <md-button class="md-raised" ng-click="ctrl.showCodes()">Show codes</md-button>
+                    <md-button class="md-raised" ng-click="ctrl.showCodes()">{% verbatim %}{{ 'SHOWCODES' | translate }}{% endverbatim %}</md-button>
                 {% endif %}
             {% if not usr.usr_blocked %}
-                <md-button class="md-raised" ng-click="ctrl.showInstruction(true)">Instructions</md-button>
+                <md-button class="md-raised" ng-click="ctrl.showInstruction(true)">{% verbatim %}{{ 'INSTRUCTIONS' | translate }}{% endverbatim %}</md-button>
             {% endif %}
-            <md-button class="md-raised" ng-href="{% url 'logout' %}">Logout</md-button>
+            <md-button class="md-raised" ng-href="{% url 'logout' %}">{% verbatim %}{{ 'LOGOUT' | translate }}{% endverbatim %}</md-button>
         </div>
         <div flex="5"></div>
         <div layout-align="center">

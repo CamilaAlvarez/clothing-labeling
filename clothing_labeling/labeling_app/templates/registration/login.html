@@ -4,30 +4,38 @@
 {% block content %}
     <div ng-controller="RegistrationCtrl as reg" ng-app="Labeling" layout="column" layout-align="center center" layout-fill>
     {% if form.non_field_errors %}
-        <p ng-init='reg.showAlert("Wrong username or password")'></p>
+        <p ng-init='reg.showAlert("LOGINERROR")'></p>
     {% endif %}
-        <h2>Login</h2>
+        {% verbatim %}
+        <h2>{{ 'SIGNIN' | translate }}</h2>
+        {% endverbatim %}
         <form name="form" method="post" role="form" action="{% url 'login' %}" novalidate>
             {% csrf_token %}
             <!-- Username -->
             <md-input-container class="md-block" flex-gt-xs >
-                <label for="username">Username</label>
+                {% verbatim %}
+                <label for="username">{{ 'USERNAME' | translate }}</label>
+                {% endverbatim %}
                 <input type="text" name="username" id="username" ng-model="reg.user.username"   />
             </md-input-container>
 
             <!-- Password -->
             <md-input-container class="md-block" flex-gt-xs>
-                <label for="password">Password</label>
+                {% verbatim %}
+                <label for="password">{{ 'PASSWORD' | translate }}</label>
+                {% endverbatim %}
                 <input type="password"  name="password" id="password" ng-model="reg.user.password"  />
             </md-input-container>
 
             <!-- SUBMIT -->
             <div class="space-top text-center">
-                <md-button class="md-raised waves-effect waves-light btn done" type="submit">Login</md-button>
+                {% verbatim %}
+                <md-button class="md-raised waves-effect waves-light btn done" type="submit">{{ 'LOGIN' | translate }}</md-button>
+                {% endverbatim %}
                 <br>
-                <a href="{% url 'register' %}">Go to registration</a>
+                <a href="{% url 'register' %}">{% verbatim %}{{ 'GOTOREGISTER' | translate }}{% endverbatim %}</a>
                 <br>
-                <a href="{% url 'password-reset' %}">Forgot you password?</a>
+                <a href="{% url 'password-reset' %}">{% verbatim %}{{ 'FORGOT' | translate }}{% endverbatim %}</a>
             </div>
         </form>
     </div>

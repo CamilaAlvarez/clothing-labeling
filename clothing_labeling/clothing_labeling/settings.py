@@ -98,7 +98,9 @@ BOWER_INSTALLED_APPS = (
     'angular-material',
     'bootstrap',
     'ui-cropper',
-    'angular'
+    'angular',
+    'angular-translate',
+    'angular-translate-loader-static-files'
 )
 
 

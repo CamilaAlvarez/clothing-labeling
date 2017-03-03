@@ -59,7 +59,8 @@ class BoundingBox(models.Model):
     bbx_width = models.FloatField(default=0.0)
     bbx_reviewed = models.BooleanField(default=False)
     bbx_verified = models.BooleanField(default=False)
-
+    bbx_image_height = models.FloatField(default=0.0)
+    bbx_image_width = models.FloatField(default=0.0)
 
 class ImageCategories(models.Model):
     ict_id = models.AutoField(primary_key=True)

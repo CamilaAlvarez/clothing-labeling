@@ -16,7 +16,7 @@ def get_images_user(user):
                                          "WHERE ict_added_bb=0 AND ict_is_test=0 AND "
                                          "ict_id NOT IN (SELECT uim_image_category_id FROM labeling_app_userimages)")
 
-
+    print list(images)
     if len(list(images)) == 0:
         raise NoImagesLeft
     user_images_categories = images[:2]

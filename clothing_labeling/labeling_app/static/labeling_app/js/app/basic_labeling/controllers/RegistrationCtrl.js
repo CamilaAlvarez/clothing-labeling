@@ -6,9 +6,9 @@ angular
     .module('Labeling')
     .controller('RegistrationCtrl', RegistrationCtrl);
 
-RegistrationCtrl.$inject = ['$mdDialog'];
+RegistrationCtrl.$inject = ['$mdDialog', '$translate'];
 
-function RegistrationCtrl($mdDialog) {
+function RegistrationCtrl($mdDialog, $translate) {
     var vm = this;
     vm.showAlert = function (errorText) {
         $mdDialog.show(
@@ -16,7 +16,7 @@ function RegistrationCtrl($mdDialog) {
                 .parent(angular.element(document.querySelector('body')))
                 .clickOutsideToClose(true)
                 .title('Error')
-                .textContent(errorText)
+                .textContent($translate.instant(errorText))
                 .ariaLabel('registration error')
                 .ok('Ok')
                 //.targetEvent(ev)

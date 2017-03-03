@@ -22,7 +22,8 @@ def index(request):
         if request.method == 'POST' and request.POST['more'] == 'true':
             user_images = utils.get_images_user(user)
         else:
-            user_images = UserImages.objects.filter(uim_evaluated=False)
+            #nunca ha entrado
+            user_images = UserImages.objects.filter(uim_evaluated=False, uim_user=user)
             if user_specifics.usr_times_finished == 0 and len(user_images)==0:
                 user_images = utils.get_images_user(user)
     except NoImagesLeft:
@@ -59,6 +60,8 @@ def evaluate(request):
         y = bounding_box['y']
         width = bounding_box['width']
         height = bounding_box['height']
+        image_height = bounding_box['imageHeight']
+        image_width = bounding_box['imageWidth']
         user = request.user
         utils.set_has_seen_info(user)
         current_image_user = UserCurrentImage.objects.get(uci_user=user)
@@ -78,9 +81,12 @@ def evaluate(request):
                 bbox.bbx_y = y
                 bbox.bbx_width = width
                 bbox.bbx_height = height
+                bbox.bbx_image_height = image_height
+                bbox.bbx_image_width = image_width
                 bbox.save()
             except ObjectDoesNotExist:
-                bbox = BoundingBox(bbx_x=x, bbx_y=y, bbx_width=width, bbx_height=height, bbx_img_cat_id=image)
+                bbox = BoundingBox(bbx_x=x, bbx_y=y, bbx_width=width, bbx_height=height, bbx_img_cat_id=image,
+                                   bbx_image_height=image_height, bbx_image_width=image_width)
                 bbox.save()
             image.ict_added_bb = True
             image.save()

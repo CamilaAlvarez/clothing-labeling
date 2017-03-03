@@ -1,47 +1,57 @@
+{% load staticfiles %}
 <md-dialog>
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Instructions</h2>
+        <h2>{% verbatim %}{{ 'INSTRUCTIONS' | translate }}{% endverbatim %}</h2>
         <span flex></span>
       </div>
     </md-toolbar>
 
     <md-dialog-content>
       <div class="md-dialog-content" ng-init="ins.pages({{ pages }})">
-          <div ng-if="ins.page == 1">
-              <p>You will be presented an image and a clothing category. You job is to use the cropper to wrap the garment in the picture.</p>
+          <div ng-if="ins.page == 1" layout="column" layout-align="center center">
+              <p>{% verbatim %}{{ 'INS1' | translate | htmlSafe}}{% endverbatim %}</p>
+              <img class="instruction" ng-src="{% static 'labeling_app/images/image-cat.png' %}"/>
           </div>
-          <div ng-if="ins.page == 2">
-              <p>To modify the cropper's size you must grab it by its corners</p>
+          <div ng-if="ins.page == 2" layout="column" layout-align="center center">
+              <p>{% verbatim %}{{ 'INS2' | translate| htmlSafe }}{% endverbatim %}</p>
+              <img class="instruction" ng-src="{% static 'labeling_app/images/corner.png' %}"/>
           </div>
-          <div ng-if="ins.page == 3">
-              <p>To move it around the image you must grab it by the center.</p>
+          <div ng-if="ins.page == 3" layout="column" layout-align="center center">
+              <p>{% verbatim %}{{ 'INS3' | translate | htmlSafe}}{% endverbatim %}</p>
+              <img class="instruction" ng-src="{% static 'labeling_app/images/center-crop.png' %}"/>
           </div>
-          <div ng-if="ins.page == 4">
-              <p>If you don't understand what garment the category referes to, you must only click the category name and descriptive image will be shown.</p>
+          <div ng-if="ins.page == 4" layout="column" layout-align="center center">
+              <p>{% verbatim %}{{ 'INS4' | translate | htmlSafe}}{% endverbatim %}</p>
+              <img class="instruction" ng-src="{% static 'labeling_app/images/choose-cat.png' %}"/>
           </div>
-          <div ng-if="ins.page == 5">
-              <p>Once the item is correctly wrapped up, the only thing left is to press the <b>Next</b> button</p>
+          <div ng-if="ins.page == 5" layout="column" layout-align="center center">
+              <p data-ng-bind-html="'INS5' | translate | htmlSafe"></p>
+              <img class="instruction" ng-src="{% static 'labeling_app/images/next.png' %}"/>
           </div>
-          <div ng-if="ins.page == 6">
-              <p>If the category is not present in the image press the <b>This is wrong!</b> button. By doing this you will let us know that the image was labeled incorrectly.</p>
+          <div ng-if="ins.page == 6" layout="column" layout-align="center center">
+              <p data-ng-bind-html="'INS6' | translate | htmlSafe"></p>
+              <img class="instruction" ng-src="{% static 'labeling_app/images/wrong.png' %}"/>
           </div>
-          <div ng-if="ins.page == 7">
-              <p>After labeling 10 images you will be given a code, which is actually the answer to the questionnaire on Mechanical Turk.</p>
+          <div ng-if="ins.page == 7" layout="column" layout-align="center center">
+              <p>{% verbatim %}{{ 'INS7' | translate | htmlSafe}}{% endverbatim %}</p>
+              <img class="instruction" ng-src="{% static 'labeling_app/images/code.png' %}"/>
           </div>
-          <div ng-if="ins.page == 8">
-              <p>If you press the <b>Obtain more images!!</b> button you will be assigned 10 more images. Once you finish labeling them all you will be given another code. </p>
+          <div ng-if="ins.page == 8" layout="column" layout-align="center center">
+              <p data-ng-bind-html="'INS8' | translate | htmlSafe"></p>
+              <img class="instruction" ng-src="{% static 'labeling_app/images/more-images.png' %}"/>
           </div>
-          <div ng-if="ins.page == 9">
-              <p>To list all the codes you have gained, press the <b>Show codes</b> button.</p>
+          <div ng-if="ins.page == 9" layout="column" layout-align="center center">
+              <p data-ng-bind-html="'INS9' | translate | htmlSafe"></p>
+              <img class="instruction" ng-src="{% static 'labeling_app/images/show-codes.png' %}"/>
           </div>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-        <md-button ng-if="ins.page != 1" ng-click="ins.previousPage()">Previous</md-button>
-        <md-button ng-if="ins.page != {{ pages }}" ng-click="ins.nextPage()">Next</md-button>
-        <md-button ng-if="ins.page == {{ pages }}" ng-click="ins.close()">Close</md-button>
+        <md-button ng-if="ins.page != 1" ng-click="ins.previousPage()">{% verbatim %}{{ 'PREVIOUS' | translate }}{% endverbatim %}</md-button>
+        <md-button ng-if="ins.page != {{ pages }}" ng-click="ins.nextPage()">{% verbatim %}{{ 'NEXT' | translate }}{% endverbatim %}</md-button>
+        <md-button ng-if="ins.page == {{ pages }}" ng-click="ins.close()">{% verbatim %}{{ 'CLOSE' | translate }}{% endverbatim %}</md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>

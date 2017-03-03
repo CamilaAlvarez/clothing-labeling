@@ -3,14 +3,14 @@
 {% block image_section %}
 
             <div layout="row"  layout-align="center">
-                <h1><b>Thanks for your help!! :D</b></h1>
+                <h1><b>{% verbatim %}{{ 'THANKS' | translate }}{% endverbatim %}</b></h1>
             </div>
             <div layout="row" class="cropArea" layout-align="center center" style="height: 600px; position: relative">
                 <img ng-src="{{ img.img_location }}">
             </div>
              <div layout="column"  layout-align=" center center">
                 <div>
-                    <h4><b>There is nothing left to do.</b></h4>
+                    <h4><b>{% verbatim %}{{ 'FINISHEDALL' | translate }}{% endverbatim %}</b></h4>
                     <br>
                 </div>
             </div>
