@@ -90,8 +90,8 @@ ENV/
 .DS_Store
 .DS_Store?
 .idea/
-clothing_labeling/.idea/*
-*/.idea/*
+clothing_labeling/.idea/
+*/.idea/
 clothing_labeling/bower_components/
 clothing-labeling-env/
 clothing_labeling/db.sqlite3
