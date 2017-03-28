@@ -39,7 +39,7 @@ class Image(models.Model):
     @staticmethod
     def last_image():
         #Cambia a 1 por mysql
-        return Image.objects.get(img_id=0)
+        return Image.objects.get(img_id=1)
 
 
 

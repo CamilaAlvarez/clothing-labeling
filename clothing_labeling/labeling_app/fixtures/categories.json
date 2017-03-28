@@ -1,0 +1,425 @@
+[
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 1,
+      "cat_description" : "skirts",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/skirts.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 2,
+      "cat_description" : "dress",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/dress.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 3,
+      "cat_description" : "jumper",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/jumper.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 4,
+      "cat_description" : "shorts",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/shorts.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 5,
+      "cat_description" : "jeans",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/jeans.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 6,
+      "cat_description" : "pants",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/pants.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 7,
+      "cat_description" :"sport_pants",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/sport_pants.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 8,
+      "cat_description" : "tee",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/tee.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 9,
+      "cat_description" : "blouse_shirts",
+      "cat_main" : true, 
+      "cat_descriptive_image" : "/media/examples/blouse.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 10,
+      "cat_description" : "sweater",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/sweater.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 11,
+      "cat_description" : "sweatshirt",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/sweatshirt.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 12,
+      "cat_description" : "glasses",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/glasses.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 13,
+      "cat_description" : "sunglasses",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/sunglasses.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 14,
+      "cat_description" : "jackets_parka",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/jackets.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 15,
+      "cat_description" : "coat",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/coat.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 16,
+      "cat_description" : "blazer",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/blazers.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 17,
+      "cat_description" : "cape",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/cape.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 18,
+      "cat_description" : "boots",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/boots.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 19,
+      "cat_description" : "shoes",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/shoes.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 20,
+      "cat_description" : "heels",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/heels.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 21,
+      "cat_description" : "sneakers",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/sneakers.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 22,
+      "cat_description" : "wedges",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/wedges.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 23,
+      "cat_description" : "sandals_hawaiana",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/sandals.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 24,
+      "cat_description" : "panties",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/panties.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 25,
+      "cat_description" : "socks",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/socks.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 26,
+      "cat_description" : "bra",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/bra.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 27,
+      "cat_description" : "body",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/body.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 28,
+      "cat_description" : "swimwear",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/swimwear.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 29,
+      "cat_description" : "belt",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/belt.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 30,
+      "cat_description" : "bag",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/bag.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 31,
+      "cat_description" : "scarf",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/scarf.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 32,
+      "cat_description" : "hat",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/hat.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 33,
+      "cat_description" : "tie",
+      "cat_main" : true,
+      "cat_descriptive_image" : "/media/examples/tie.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 34,
+      "cat_description" : "tights",
+      "cat_main" : true, 
+      "cat_descriptive_image" : "/media/examples/tights.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 36,
+      "cat_description" : "eyewear",
+      "cat_main" : false, 
+      "cat_descriptive_image" : "/media/examples/glasses.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 37,
+      "cat_description" : "footwear",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/shoes.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 38,
+      "cat_description" : "leggings",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/pants.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 39,
+      "cat_description" : "outerwear",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/jackets.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 40,
+      "cat_description" : "pants_street2shop",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/pants.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 41,
+      "cat_description" : "tops",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/tee.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 42,
+      "cat_description" : "capris",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/pants.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 43,
+      "cat_description" : "halter",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/dress.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 44,
+      "cat_description" : "zapatos",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/shoes.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 45,
+      "cat_description" : "patas",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/pants.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 46,
+      "cat_description" : "sandalia",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/sandals.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 47,
+      "cat_description" : "sandals",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/sandals.png"
+    }
+  },
+  {
+    "model": "labeling_app.category",
+    "fields": {
+      "cat_id" : 48,
+      "cat_description" : "clogs",
+      "cat_main" : false,
+      "cat_descriptive_image" : "/media/examples/wedges.png"
+    }
+  }
+]

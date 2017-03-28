@@ -1,11 +1,11 @@
 {% extends 'labeling_app/base-labeling.html' %}
 
 {% block image_section %}
-    <div layout="row"  layout-align="center">
-            <h1 ng-mouseover="ctrl.showCatImage()" ng-mouseleave="ctr.hideCatImage()">{% verbatim %}{{ 'FINDTHE' | translate }}{% endverbatim %}
+    <div layout="row"  layout-align="center" ng-init="ctrl.setDescription('{{ category.cat_description }}')">
+            <h1 ng-mouseover="ctrl.showCatImage()" ng-mouseleave="ctrl.hideCatImage()">{% verbatim %}{{ 'FINDTHE' | translate }}{% endverbatim %}
                 <span class="dashed" id="category"
                       ng-click="ctrl.showCategoryPicture('{{ category.cat_descriptive_image }}','{{ category.cat_description }}')">
-                    {{ category.cat_description }}</span></h1>
+                {% verbatim %}{{ ctrl.currentCategory | translate }}{% endverbatim %}</span></h1>
         </div>
         <div layout="row" class="cropArea" layout-align="center center" style="height: 600px; position: relative">
             <ui-cropper layout-fill  image="ctrl.image"  area-type="rectangle" cropject="ctrl.cropper" result-image="ctrl.myCroppedImage"></ui-cropper>

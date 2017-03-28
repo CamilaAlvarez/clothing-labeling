@@ -37,6 +37,9 @@ function LabelingCtrl($mdDialog, $rootScope) {
     self.setImage = function (image) {
         self.image = image;
     };
+    self.setDescription = function (category) {
+        self.currentCategory = category;
+    };
     self.showInstruction = function (close) {
         $mdDialog.show({
             controller: InstructionsCtrl,
@@ -74,7 +77,7 @@ function LabelingCtrl($mdDialog, $rootScope) {
                         '<form ng-cloak>'+
                             '<md-toolbar>'+
                                 '<div class="md-toolbar-tools">'+
-                                    '<h2>'+name+'</h2>'+
+                                    '<h2>{{ \''+name+'\' | translate }}</h2>'+
                                     '<span flex></span>'+
                                     '<md-button ng-click="ctrl.close()">Close</md-button>'+
                                 '</div>'+

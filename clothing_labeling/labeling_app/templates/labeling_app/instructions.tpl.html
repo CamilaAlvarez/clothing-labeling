@@ -35,14 +35,18 @@
               <img class="instruction" ng-src="{% static 'labeling_app/images/wrong.png' %}"/>
           </div>
           <div ng-if="ins.page == 7" layout="column" layout-align="center center">
+              <p data-ng-bind-html="'INS7' | translate | htmlSafe"></p>
+              <img class="instruction" ng-src="{% static 'labeling_app/images/example_partial.png' %}"/>
+          </div>
+          <div ng-if="ins.page == 8" layout="column" layout-align="center center">
               <p>{% verbatim %}{{ 'INS7' | translate | htmlSafe}}{% endverbatim %}</p>
               <img class="instruction" ng-src="{% static 'labeling_app/images/code.png' %}"/>
           </div>
-          <div ng-if="ins.page == 8" layout="column" layout-align="center center">
+          <div ng-if="ins.page == 9" layout="column" layout-align="center center">
               <p data-ng-bind-html="'INS8' | translate | htmlSafe"></p>
               <img class="instruction" ng-src="{% static 'labeling_app/images/more-images.png' %}"/>
           </div>
-          <div ng-if="ins.page == 9" layout="column" layout-align="center center">
+          <div ng-if="ins.page == 10" layout="column" layout-align="center center">
               <p data-ng-bind-html="'INS9' | translate | htmlSafe"></p>
               <img class="instruction" ng-src="{% static 'labeling_app/images/show-codes.png' %}"/>
           </div>

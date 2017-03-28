@@ -26,7 +26,8 @@ def get_images_user(user):
 
     shuffled = sorted(images, key=lambda x: random.random())
     user_images_categories_list = list(user_images_categories)
-    user_images_categories_list.append(shuffled[0])
+    if len(shuffled) > 0:
+        user_images_categories_list.append(shuffled[0])
     random.shuffle(user_images_categories_list)
     for image in user_images_categories_list:
         user_image = UserImages(uim_user=user, uim_image_category=image)

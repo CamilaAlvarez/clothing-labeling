@@ -75,8 +75,8 @@ def evaluate(request):
             except BlockedUser:
                 return redirect('blocked')
         else:
-            bbox = image.bounding_box
             try:
+                bbox = BoundingBox.objects.get(bbx_img_cat_id=image)
                 bbox.bbx_x = x
                 bbox.bbx_y = y
                 bbox.bbx_width = width
@@ -131,7 +131,7 @@ def end(request):
     #A user has ended when he/she labels 10 images and receives a code
     #This means that there are not valid images without bbox
     user_images = UserImages.objects.filter(uim_evaluated=False)
-    if len(user_images) == 0:
+    if len(user_images) == 0 and not user_specifics.usr_finished :
         user_specifics.usr_finished = True
         user_specifics.usr_times_finished += 1
         user_specifics.save()
@@ -150,6 +150,7 @@ def blocked_user(request):
 def no_images_left(request):
     user = request.user
     user_specifics = UserSpecifics.objects.get(usr=user)
+    user_specifics.usr_has_seen_info = True
     last_image = Image.last_image()
     return render(request, 'labeling_app/no-images-left.html', {'img':last_image, 'usr' : user_specifics})
 
@@ -167,9 +168,9 @@ def get_instructions(request):
     user = request.user
     user_specifics = UserSpecifics.objects.get(usr=user)
     if user_specifics.usr_is_mechanical_turk:
-        pages = 9
+        pages = 10
     else:
-        pages = 6
+        pages = 7
     return render(request, 'labeling_app/instructions.tpl.html', {'pages': pages})
 
 

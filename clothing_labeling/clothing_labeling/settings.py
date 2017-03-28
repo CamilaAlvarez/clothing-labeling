@@ -25,7 +25,7 @@ SECRET_KEY = ')_t6jo9lr=^vn#tw6id9jakpy95)i-e6k#laapp1=al5q(&-sz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".192.168.1.90"]
+ALLOWED_HOSTS = ["*"]
 
 #Redirect after login
 LOGIN_REDIRECT_URL = 'index'
@@ -141,6 +141,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/Users/calvarez/Downloads/'
+MEDIA_ROOT = '/home/calvarez/Pictures'
 MEDIA_URL = '/media/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
