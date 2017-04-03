@@ -14,4 +14,5 @@ urlpatterns = [
         , name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete,
         {'template_name': 'registration/password-reset-complete.html'}, name='password_reset_complete'),
+    url(r'^$', auth_views.login, {'template_name': 'registration/login.html'}, name="login"),
 ]

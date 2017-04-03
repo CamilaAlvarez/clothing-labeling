@@ -20,17 +20,16 @@ def get_images_user(user):
 
     if len(list(images)) == 0:
         raise NoImagesLeft
-    user_images_categories = images
+    user_images_categories = list(images)
     if len(user_images_categories) == 0:
         return []
     images = ImageCategories.objects.filter(ict_is_test=True).order_by('ict_id')
 
     shuffled = sorted(images, key=lambda x: random.random())
-    user_images_categories_list = list(user_images_categories)
     if len(shuffled) > 0:
-        user_images_categories_list.append(shuffled[0])
-    random.shuffle(user_images_categories_list)
-    for image in user_images_categories_list:
+        user_images_categories.append(shuffled[0])
+    random.shuffle(user_images_categories)
+    for image in user_images_categories:
         user_image = UserImages(uim_user=user, uim_image_category=image)
         user_image.save()
     user_images = UserImages.objects.filter(uim_user=user, uim_image_category__ict_added_bb=False,
