@@ -9,14 +9,6 @@
     <h2>{% verbatim %}{{ 'REGISTER' | translate }}{% endverbatim %}</h2>
     <form name="form" method="post" role="form" action="{% url 'verify' %}" novalidate>
         {% csrf_token %}
-        <!-- Username -->
-        <md-input-container class="md-block" flex-gt-xs >
-            <label for="username">{% verbatim %}{{ 'USERNAME' | translate }}{% endverbatim %}</label>
-            <input type="text" name="username" id="username" ng-model="reg.user.username"  required />
-            <div ng-messages="form.username.$error" role="alert" >
-              <div ng-message="required" class="my-message">{% verbatim %}{{ 'ERRORUSERNAME' | translate }}{% endverbatim %}</div>
-            </div>
-        </md-input-container>
 
         <!-- Email -->
         <md-input-container  class="md-block" flex-gt-xs>
@@ -47,7 +39,7 @@
         </md-input-container>
 
         <!-- Others -->
-        <h5>{% verbatim %}{{ 'SITEINFO' | translate }}{% endverbatim %}</h5>
+        <!--<h5>{% verbatim %}{{ 'SITEINFO' | translate }}{% endverbatim %}</h5>
         <input type="hidden" name="info" ng-value="reg.user.info.selected"/>
         <md-input-container>
         <md-radio-group name="origin" id="info" ng-change="" ng-model="reg.user.info.selected" ng-required="true" >
@@ -61,7 +53,7 @@
             <div ng-messages="form.otherDetails.$error" role="alert" >
               <div ng-message="required" class="my-message">{% verbatim %}{{ 'ERRORDESCRIPTION' | translate }}{% endverbatim %}</div>
             </div>
-        </md-input-container>
+        </md-input-container>-->
 
         <!-- SUBMIT -->
         <div class="space-top text-center">

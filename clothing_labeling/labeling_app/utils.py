@@ -13,13 +13,14 @@ def set_has_seen_info(user):
 
 def get_images_user(user):
     images = ImageCategories.objects.raw("SELECT * FROM labeling_app_imagecategories "
-                                         "WHERE ict_added_bb=0 AND ict_is_test=0 AND "
-                                         "ict_id NOT IN (SELECT uim_image_category_id FROM labeling_app_userimages)")
+                                         "JOIN labeling_app_category ON ict_cat_id=cat_id "
+                                         "WHERE ict_added_bb=0 AND ict_is_test=0 AND ict_valid=1 AND "
+                                         "ict_id NOT IN (SELECT uim_image_category_id FROM labeling_app_userimages)"
+                                         " AND cat_main=1 ORDER BY ict_id")
 
-    print list(images)
     if len(list(images)) == 0:
         raise NoImagesLeft
-    user_images_categories = images[:2]
+    user_images_categories = images[:10]
     if len(user_images_categories) == 0:
         return []
     images = ImageCategories.objects.filter(ict_is_test=True).order_by('ict_id')

@@ -10,19 +10,20 @@ def register(request):
 def verify(request):
     if request.method == 'POST':
         try:
-            username = request.POST['username']
+            username = request.POST['email']
             email = request.POST['email']
             password = request.POST['password']
             repeatPassword = request.POST['repeatPassword']
             if password!=repeatPassword:
                 return render(request, 'registration/register.html', {'error':"Your passwords do not match!"})
-            details = request.POST['info']
-            other_details = "Amazon Mechanical Turk"
-            mechanical_turk_user = True
-            if details == 'other':
-                other_details = request.POST['otherDetails']
-                mechanical_turk_user = False
-
+            #details = request.POST['info']
+            #other_details = "Amazon Mechanical Turk"
+            #mechanical_turk_user = True
+            #if details == 'other':
+            #    other_details = request.POST['otherDetails']
+            #    mechanical_turk_user = False
+            mechanical_turk_user = False
+            other_details = "Concurso gift card"
             if User.objects.filter(username=username):
                 return render(request,'registration/register.html', {'error': 'Username already in use :('})
 
