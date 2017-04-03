@@ -46,7 +46,7 @@
         "INS3":"Para moverlo debes tomarlo por el centro.",
         "INS4":"Si no entiendes a que tipo de prenda se refiere la categoría, solo debes presionar en el nombre. Esto abrirá un diálogo con una imagen descriptiva.",
         "INS5":"Una vez que has envuelto la prenda solo te queda presionar el botón <b>Siguiente</b>. Nota que la prenda no se envuelve de manera exacta (el cropper considera un poco de espacio extra) ",
-        "INS6":"Si la categoría no está presente en la imagen debes presionar el botón  <b>Incorrecto!</b>. Esto nos ayudará a conocer las imágenes que fueron incorrectamente etiquetadas.",
+        "INS6":"Si la categoría no está presente en la imagen o la imagen no se ve, debes presionar el botón  <b>Incorrecto!</b>. Esto nos ayudará a conocer las imágenes que fueron incorrectamente etiquetadas.",
         "INS7":"Si la prenda que se te pide envolver se encuentra parcialemente en la imagen, entonces marca toda la zona que cubriría el item si fuese completamente visible",
         "INS8":"Se te entregará un código después de etiquetar 10 imágenes, el cual corresponde a la respuesta a la pregunta del cuestionario de Mechanical Turk.",
         "INS9":"Si presionas el botón <b>Obtener más imágenes!!</b> se te asignarán 10 imágenes más. Una vez que las termines todas se te entregará otro código.",
