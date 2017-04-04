@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Transform Category</title>
+</head>
+<body>
+<h1>{{ category }}</h1>
+<img src={{ image }}>
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".js-example-basic-single").select2();
+});
+</script>
+
+<form method="post" action="{% url 'transformer' %}">
+{% csrf_token %}
+<select name="category" class="js-example-basic-single">
+    {% for category in main_categories %}
+        <option value={{ category.cat_id }}>{{ category.cat_description }}</option>
+    {% endfor %}
+</select>
+    <input type="hidden" name="image-category" value={{ image_category }}>
+    <input type="submit" name="invalid" value="X">
+    <input type="submit" name="next" value="next">
+</form>
+
+</body>
+</html>

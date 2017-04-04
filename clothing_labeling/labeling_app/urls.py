@@ -12,9 +12,9 @@ urlpatterns = [
     url(r'^codes/', views.get_codes, name='codes'),
     url(r'^verify/', registration.verify, name='verify'),
     url(r'^register/$', registration.register, name='register'),
-    url(r'^verifier[$/]', views.verifier, name='verifier'),
-    url(r'^transform-categories[$/]', views.transformer, name = 'transformer'),
-    url(r'^assign-category-to-bbox[$/]', views.transform_category, name='transformer'),
+    #url(r'^verifier[$/]', views.verifier, name='verifier'),
+    url(r'^transform-categories/$', views.transform_category, name = 'transformer'),
+    #url(r'^assign-category-to-bbox[$/]', views.transform_category, name='transformer'),
     url(r'^home/', views.index, name='index'),
     url(r'^', include('labeling_app.url_registration'))
 

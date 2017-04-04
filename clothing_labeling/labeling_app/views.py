@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect
 from django.db import transaction
 from django.contrib.auth.decorators import login_required
 from .models import UserSpecifics, ImageCategories, UserImages, UserCurrentImage, BoundingBox, Image, \
-    MechanicalTurkCodes
+    MechanicalTurkCodes, Category
 import utils
 import uuid
 from exceptions import NoImagesLeft, BlockedUser
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+import decorators
 
 #Pages
 @login_required
@@ -190,9 +191,37 @@ def transformer(request):
                                                                    })
 
 
+@decorators.login_by_ip
 def transform_category(request):
-    return render(request, 'labeling_app/category-labeling-with-bb.html', {'controller': 'BoundingBoxController',
-                                                                    'controller_short': 'bbx',
-                                                                    'app': "Verifier",
-                                                                    "request_controller": "UpdateCategoryBBoxController"
+    if 'invalid' in request.POST:
+        try:
+            image_category_id = request.POST['image-category']
+            image_category = ImageCategories.objects.get(ict_id=image_category_id)
+            image_category.ict_valid = False
+            image_category.save()
+        except Exception as e:
+            print e
+    elif 'next' in request.POST:
+        try:
+            image_category_id = request.POST['image-category']
+            category_id = request.POST['category']
+            image_category = ImageCategories.objects.get(ict_id=image_category_id)
+            category = Category.objects.get(cat_id=category_id)
+            image_category.ict_cat = category
+            image_category.save()
+        except Exception as e:
+            print e
+
+    main_categories = Category.objects.filter(cat_main=True)
+    image_category_not_main = ImageCategories.objects.filter(ict_cat__cat_main=False, ict_valid=True)
+    if len(image_category_not_main) == 0:
+        return render(request, 'labeling_app/over-transform-category.html')
+    image_category_id = image_category_not_main[0].ict_id
+    image = image_category_not_main[0].ict_img.img_location
+    category = image_category_not_main[0].ict_cat.cat_description
+
+    return render(request, 'labeling_app/transform-category.html', {'image': image,
+                                                                    'category': category,
+                                                                    'main_categories': main_categories,
+                                                                    'image_category':image_category_id
                                                                    })
