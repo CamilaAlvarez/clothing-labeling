@@ -38,6 +38,9 @@
                 <a href="{% url 'password-reset' %}">{% verbatim %}{{ 'FORGOT' | translate }}{% endverbatim %}</a>
             </div>
         </form>
+        {% verbatim %}
+        <md-button class="md-raised waves-effect waves-light btn done" ng-click="reg.showAnonymousLogin()">{{ 'LOGIN-NO-USERNAME' | translate }}</md-button>
+        {% endverbatim %}
     </div>
 
 {% endblock content %}

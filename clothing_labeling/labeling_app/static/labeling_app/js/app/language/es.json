@@ -99,5 +99,10 @@
         "patas": "Patas Cranberry",
         "sandalia": "Sandalias Cranberry",
         "sandals": "Sandalias filter",
-        "clogs": "Suecos"
+        "clogs": "Suecos",
+        "LOGIN-NO-USERNAME": "Entrar sin una cuenta",
+        "INSTRUCTIONS_ANONYMOUS": "Se creará una sesión de invitado, la cual puede ser guardada por un tiempo por su navegador.",
+        "INSTRUCTIONS_ANONYMOUS2": "Por favor procura etiquetar al menos 10 imágenes antes de cerrar la página",
+        "INSTRUCTIONS_ANONYMOUS3": "El e-mail que coloques a continucación será utilizado para los sorteos, si decides no colocar uno entonces no participarás de ningún sorteo"
+
   }

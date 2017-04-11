@@ -9,6 +9,8 @@ from exceptions import NoImagesLeft, BlockedUser
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 import decorators
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 #Pages
 @login_required
@@ -225,3 +227,29 @@ def transform_category(request):
                                                                     'main_categories': main_categories,
                                                                     'image_category':image_category_id
                                                                    })
+
+@transaction.atomic
+def register_dummy_user(request):
+    email = "dummy@dummy.du"
+    password = "soyunusuariodummysiquesi"
+    username = uuid.uuid4()
+    other_details = "Concurso gift card"
+    mechanical_turk_user = False
+    if 'email' in request.POST and len(request.POST['email']) > 0:
+        email = request.POST['email']
+    while User.objects.filter(username=username):
+        username = uuid.uuid4()
+
+    new_user = User.objects.create_user(username=username, email=email, password=password)
+    user_specifics = UserSpecifics(usr=new_user, usr_origin=other_details,
+                                       usr_is_mechanical_turk=mechanical_turk_user)
+    user_specifics.save()
+
+    auth_user = authenticate(username=username, password=password)
+    if auth_user is not None:
+        login(request, auth_user)
+
+    return redirect('index')
+
+def get_anonymous_login_screen(request):
+    return render(request, "registration/anonymous-login.html")

@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^register/$', registration.register, name='register'),
     #url(r'^verifier[$/]', views.verifier, name='verifier'),
     url(r'^transform-categories/$', views.transform_category, name = 'transformer'),
+    url(r'^anonymous-user/$', views.register_dummy_user, name = 'dummy_user'),
+    url(r'^anonymous-user-screen/$', views.get_anonymous_login_screen, name = 'dummy_user_screen'),
     #url(r'^assign-category-to-bbox[$/]', views.transform_category, name='transformer'),
     url(r'^home/', views.index, name='index'),
     url(r'^', include('labeling_app.url_registration'))

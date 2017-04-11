@@ -4,10 +4,10 @@
 'use strict';
 var app = angular.module("Labeling", ['ngMaterial','ngMessages', 'uiCropper','pascalprecht.translate']);
 
-/*app.config(['$httpProvider', function ($httpProvider) {
+app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-}]);*/
+}]);
 
 app.filter("htmlSafe", ['$sce', function($sce) {
     return function(htmlCode){
