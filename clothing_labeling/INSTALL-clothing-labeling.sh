@@ -28,10 +28,13 @@ echo "INSTALLING DEPENDENCIES" && \
 pip install -r requirements.txt && \
 sed "s/'default': {[^}]*}$/'default': {'ENGINE': 'django.db.backends.mysql','NAME': 'clothingLabeling','USER': 'labelingassistant','PASSWORD': 'PASS-99a050c0-d3ce-44e4-a581-6a7c4b609a08','HOST': 'localhost','PORT': '',}/"  $DESTINATION/clothing_labeling/settings.py > $DESTINATION/clothing_labeling/temporal  && \
 sed "s/DEBUG = True/DEBUG = False/" $DESTINATION/clothing_labeling/temporal > $DESTINATION/clothing_labeling/settings.py && \
-sed '120iSTATIC_ROOT = "'$STATIC'"' -i $DESTINATION/clothing_labeling/settings.py && \
+sed '146iSTATIC_ROOT = "'$STATIC'"' -i $DESTINATION/clothing_labeling/settings.py && \
 echo "yes" | python $DESTINATION/manage.py collectstatic && \
-sed 's/\/api/\/clothing-labeling\/api/' -i $STATIC/labeling_app/js/basic_labeling/app.js && \
-sed 's/\/api/\/clothing-labeling\/api/' -i $STATIC/labeling_app/js/verifier/app.js && \
+sed "s/templateUrl: '\/instructions\/',/templateUrl: '\/clothing-labeling\/instructions\/',/" -i $STATIC/labeling_app/js/app/basic_labeling/controllers/LabelingCtrl.js && \
+sed "s/templateUrl: '\/anonymous-user-screen\/',/templateUrl: '\/clothing-labeling\/anonymous-user-screen\/',/" -i $STATIC/labeling_app/js/app/basic_labeling/controllers/RegistrationCtrl.js && \
+sed "s/{'next_page': '\/login\/'}/{'next_page': '\/clothing-labeling\/login\/'}/" -i $DESTINATION/labeling_app/url_registration.py && \
+cd ${DESTINATION} && \
+python manage.py migrate
 deactivate && \
 echo "SUCCESS"
 
