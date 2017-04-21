@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
-<div ng-controller="RegistrationCtrl as reg" ng-app="Labeling" layout="column" layout-align="center center" layout-fill >
+<div ng-controller="RegistrationCtrl as reg" ng-app="Labeling" layout="column" layout-align="center center" layout-fill ng-cloak>
     {% if error %}
         <p ng-init='reg.showAlert("{{  error|safe   }}")'></p>
     {% endif %}

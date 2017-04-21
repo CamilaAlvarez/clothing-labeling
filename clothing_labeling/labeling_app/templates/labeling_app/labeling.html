@@ -1,7 +1,7 @@
 {% extends 'labeling_app/base-labeling.html' %}
 
 {% block image_section %}
-    <div layout="row"  layout-align="center" ng-init="ctrl.setDescription('{{ category.cat_description }}')">
+    <div layout="row"  layout-align="center" ng-init="ctrl.setDescription('{{ category.cat_description }}')" ng-cloak>
             <h1 ng-mouseover="ctrl.showCatImage()" ng-mouseleave="ctrl.hideCatImage()">{% verbatim %}{{ 'FINDTHE' | translate }}{% endverbatim %}
                 <span class="dashed" id="category"
                       ng-click="ctrl.showCategoryPicture('{{ category.cat_descriptive_image }}','{{ category.cat_description }}')">

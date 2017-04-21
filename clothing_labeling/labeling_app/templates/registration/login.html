@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div ng-controller="RegistrationCtrl as reg" ng-app="Labeling" layout="column" layout-align="center center" layout-fill>
+    <div ng-controller="RegistrationCtrl as reg" ng-app="Labeling" layout="column" layout-align="center center" layout-fill ng-cloak>
     {% if form.non_field_errors %}
         <p ng-init='reg.showAlert("LOGINERROR")'></p>
     {% endif %}

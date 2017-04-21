@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div ng-app="Labeling" ng-controller="LabelingCtrl as ctrl" layout-fill layout="column"  ng-init="ctrl.setImage('{{ img.img_location }}')">
+    <div ng-app="Labeling" ng-controller="LabelingCtrl as ctrl" layout-fill layout="column"  ng-init="ctrl.setImage('{{ img.img_location }}')" ng-cloak>
         <md-content layout-fill>
         {% if not usr.usr_has_seen_info %}
             <p ng-init="ctrl.showInstruction(false)"></p>
