@@ -1,5 +1,5 @@
 <md-dialog>
-    <form ng-cloak method="post" action="{% url 'dummy_user' %}">
+    <form ng-cloak method="post" action="{% url 'dummy_user' %}" ng-submit="ctrl.pushButton()">
         {% csrf_token %}
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -28,7 +28,6 @@
                         {% verbatim %}
                         <md-button  class="md-raised waves-effect waves-light btn done"
                                     ng-disabled="ctrl.getPressed()"
-                                    ng-submit="ctrl.pushButton()"
                                     type="submit"><i class="material-icons left">done</i>
                             {{ 'FINISHREGISTER' | translate }}</md-button>
                         {% endverbatim %}
