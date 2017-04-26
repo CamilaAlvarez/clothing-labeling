@@ -13,10 +13,16 @@ function RegistrationCtrl($mdDialog, $translate) {
     AnonymousLoginCtrl.$inject = ['$mdDialog'];
     function AnonymousLoginCtrl($mdDialog) {
         var self = this;
-
+        self.pressed = false;
         self.close = function() {
             $mdDialog.cancel();
         };
+        self.pushButton = function () {
+            self.pressed = true;
+        };
+        self.getPressed = function () {
+            return self.pressed;
+        }
     }
     vm.showAlert = function (errorText) {
         $mdDialog.show(

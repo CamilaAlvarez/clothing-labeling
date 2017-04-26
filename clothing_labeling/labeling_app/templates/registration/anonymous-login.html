@@ -26,7 +26,10 @@
                     </md-input-container>
                     <div class="space-top text-center">
                         {% verbatim %}
-                        <md-button  class="md-raised waves-effect waves-light btn done" type="submit"><i class="material-icons left">done</i>
+                        <md-button  class="md-raised waves-effect waves-light btn done"
+                                    ng-disabled="ctrl.getPressed()"
+                                    ng-submit="ctrl.pushButton()"
+                                    type="submit"><i class="material-icons left">done</i>
                             {{ 'FINISHREGISTER' | translate }}</md-button>
                         {% endverbatim %}
                     </div>

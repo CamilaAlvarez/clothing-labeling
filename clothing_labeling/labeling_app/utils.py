@@ -16,7 +16,7 @@ def get_images_user(user):
                                          "JOIN labeling_app_category ON ict_cat_id=cat_id "
                                          "WHERE ict_added_bb=0 AND ict_is_test=0 AND ict_valid=1 AND "
                                          "ict_id NOT IN (SELECT uim_image_category_id FROM labeling_app_userimages)"
-                                         " AND cat_main=1 ORDER BY ict_id LIMIT 10")
+                                         " AND cat_main=1 ORDER BY RAND() LIMIT 10")
 
     if len(list(images)) == 0:
         raise NoImagesLeft
