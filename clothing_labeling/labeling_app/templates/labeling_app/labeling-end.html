@@ -7,6 +7,9 @@
             <img ng-src="{{ img.img_location }}">
         </div>
         <div layout="column"  layout-align=" center center">
+            <div>
+                <h4>{% verbatim %}{{ 'LABELED' | translate }}{% endverbatim %}{{ image_number }} {% verbatim %}{{ 'LABELED_END' | translate }}{% endverbatim %}</h4>
+            </div>
             {% if usr.usr_is_mechanical_turk %}
                 <div>
                     <h4>{% verbatim %}{{ 'YOURCODEIS' | translate }}{% endverbatim %} <b>{{ code }}</b></h4>

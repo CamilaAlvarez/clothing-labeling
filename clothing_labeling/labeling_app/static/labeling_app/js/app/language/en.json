@@ -103,5 +103,7 @@
         "LOGIN-NO-USERNAME": "Enter without an account",
         "INSTRUCTIONS_ANONYMOUS": "A guest session will be created, which will be probabibly saved by your browser for some time.",
         "INSTRUCTIONS_ANONYMOUS2": "Please label at least 10 images before leaving the site.",
-        "INSTRUCTIONS_ANONYMOUS3": "The e-mail written in the space will be used for the raffles, if you decide not to put one then you will not be participating."
+        "INSTRUCTIONS_ANONYMOUS3": "The e-mail written in the space will be used for the raffles, if you decide not to put one then you will not be participating.",
+        "LABELED": "You've labeled ",
+        "LABELED_END": " images so far."
     }

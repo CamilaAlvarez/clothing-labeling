@@ -79,6 +79,17 @@ def evaluate(request):
                 return redirect('blocked')
         else:
             try:
+                _ = float(x)
+                _ = float(y)
+                _ = float(height)
+                _ = float(width)
+            except ValueError:
+                image.ict_valid = False
+                image.save()
+                if not utils.check_end(user):
+                    return redirect('end')
+                return redirect('index')
+            try:
                 bbox = BoundingBox.objects.get(bbx_img_cat_id=image)
                 bbox.bbx_x = x
                 bbox.bbx_y = y
@@ -91,6 +102,7 @@ def evaluate(request):
                 bbox = BoundingBox(bbx_x=x, bbx_y=y, bbx_width=width, bbx_height=height, bbx_img_cat_id=image,
                                    bbx_image_height=image_height, bbx_image_width=image_width)
                 bbox.save()
+
             image.ict_added_bb = True
             image.save()
         if not utils.check_end(user):
@@ -133,15 +145,17 @@ def end(request):
         code_turk.save()
     #A user has ended when he/she labels 10 images and receives a code
     #This means that there are not valid images without bbox
-    user_images = UserImages.objects.filter(uim_evaluated=False)
+    user_images = UserImages.objects.filter(uim_evaluated=False, uim_user=user)
     if len(user_images) == 0 and not user_specifics.usr_finished :
         user_specifics.usr_finished = True
         user_specifics.usr_times_finished += 1
         user_specifics.save()
     end_image = Image.last_image()
+    image_number = UserImages.objects.filter(uim_evaluated=True, uim_user=user).count()
     return render(request, 'labeling_app/labeling-end.html', {'usr': user_specifics,
                                                               'code' : code,
-                                                              'img' : end_image})
+                                                              'img' : end_image,
+                                                              'image_number': image_number})
 
 
 @login_required
