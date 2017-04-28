@@ -41,7 +41,7 @@
         "MOREIMAGE":"Obtener más imágenes!!",
         "THANKS":"Gracias por tu ayuda!! :D",
         "FINISHEDALL":"Ya no queda nada que hacer.",
-        "INS1":"Se te mostrará una imagen y una categoría de prenda. Tu trabajo consiste en envolver el item correspondiente a la categoría en la imagen. Para eso deberás ocupar el \"cropper\".",
+        "INS1":"Se te mostrará una imagen y una categoría de prenda. Tu trabajo consiste en envolver el item correspondiente a la categoría en la imagen. Para eso deberás ocupar el \"cropper\". Si aparece más de una prenda de la categoría, entonces ocupa el \"cropper\" para envolver solo una de ellas.",
         "INS2":"Para modificar el tamaño del cropper deber tomarlo por las esquinas.",
         "INS3":"Para moverlo debes tomarlo por el centro.",
         "INS4":"Si no entiendes a que tipo de prenda se refiere la categoría, solo debes presionar en el nombre. Esto abrirá un diálogo con una imagen descriptiva.",
