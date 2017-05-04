@@ -52,7 +52,7 @@ class Category(models.Model):
 
 class BoundingBox(models.Model):
     bbx_id = models.AutoField(primary_key=True)
-    bbx_img_cat_id = models.OneToOneField('ImageCategories', on_delete=models.CASCADE, related_name='bounding_box')
+    bbx_img_cat_id = models.OneToOneField('ImageCategories', related_name='bounding_box')
     bbx_x = models.FloatField(default=0.0)
     bbx_y = models.FloatField(default=0.0)
     bbx_height = models.FloatField(default=0.0)
@@ -64,8 +64,8 @@ class BoundingBox(models.Model):
 
 class ImageCategories(models.Model):
     ict_id = models.AutoField(primary_key=True)
-    ict_img = models.ForeignKey('Image', on_delete=models.CASCADE, related_name='image')
-    ict_cat = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='categories')
+    ict_img = models.ForeignKey('Image', related_name='image')
+    ict_cat = models.ForeignKey('Category', related_name='categories')
     ict_added_bb = models.BooleanField(default=False)
     ict_valid = models.BooleanField(default=True)
     ict_taken_for_labeling = models.BooleanField(default=False)

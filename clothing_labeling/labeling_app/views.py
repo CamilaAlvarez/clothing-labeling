@@ -42,6 +42,13 @@ def index(request):
         current_image.uci_image_category = next_image
     except UserCurrentImage.DoesNotExist:
         current_image = UserCurrentImage(uci_user=user, uci_image_category=next_image)
+    except UserCurrentImage.MultipleObjectsReturned:
+        current_images = UserCurrentImage.objects.filter(uci_user=user)
+        current_image = current_images[0]
+        current_image.uci_image_category = next_image
+        for i in range(1,current_images.count()):
+            current_images[i].delete()
+
     current_image.save()
     category = next_image.ict_cat
     user_specifics.usr_has_show_fraude_info = True
